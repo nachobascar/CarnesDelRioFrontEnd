@@ -10,8 +10,7 @@ function App() {
   return (
     <body>
       <Header/>
-      <Home/>
-        <Cart/>
+        <Home/>
       <Footer/>
     </body>
   );
