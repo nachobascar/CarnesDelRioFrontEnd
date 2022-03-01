@@ -45,7 +45,7 @@ class Header extends Component {
                 </nav>
                 {/* <a href="#cart" class="book-a-table-btn scrollto d-none d-lg-flex">Carrito</a> */}
                 
-		        <a onClick={toggleCart} class="cd-img-replace" href='#'>Carrito</a>
+		        <a onClick={toggleCart} class="book-a-table-btn scrollto d-none d-lg-flex" href='#'>Carrito</a>
 
                 </div>
             </header>
