@@ -1,0 +1,111 @@
+.cart-signs {
+    font-size: 1.5rem;
+}
+
+.sidecart{
+    width: 500px;
+    min-width: 500px;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    padding-top: 71px;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    right: -500px;
+    z-index: 997;
+    transition: 0.2s ease;
+    background: rgba(12, 11, 9, 0.6);
+  }
+  
+  @media(max-width: 400px){
+    .sidecart{
+      width: 100vw;
+      right: -100vw;
+    }
+  }
+  
+  .open-cart{
+    right: 0px !important;
+  }
+  .open-cart:before{
+    content: '';
+    position: fixed;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    pointer-events: none;
+    background-color: black;
+    opacity: 0.5;
+    z-index: -1;
+  }
+  
+  
+  
+  /* .cd-img-replace {
+     replace text with a background-image 
+    display: inline-block;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+  } */
+  
+  /* -------------------------------- 
+  
+  xheader 
+  
+  -------------------------------- */
+
+
+  
+  
+  
+  @media only screen and (min-width: 1200px) {
+    #sidecart > * {
+      padding: 0 2em;
+    }
+    #sidecart .cd-cart-items {
+      padding: 1em 2em;
+    }
+    #sidecart {
+      right: 2em;
+    }
+  }
+  
+
+  
+  /* -------------------------------- 
+  
+  xkeyframes 
+  
+  -------------------------------- */
+  @-webkit-keyframes cd-fade-in {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  @-moz-keyframes cd-fade-in {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes cd-fade-in {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
