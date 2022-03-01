@@ -4,7 +4,7 @@
 
 .sidecart{
     width: 500px;
-    min-width: 500px;
+    min-width: 300px;
     height: 100vh;
     position: fixed;
     top: 0px;

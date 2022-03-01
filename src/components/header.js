@@ -3,6 +3,11 @@ import React, {Component} from 'react';
 function toggleCart(){
     document.querySelector('.sidecart').classList.toggle('open-cart');
 }
+function toggleMobile(){
+    document.getElementById('navbar').classList.toggle('navbar-mobile')
+    this.classList.toggle('bi-list')
+    this.classList.toggle('bi-x')
+}
 
 class Header extends Component {
     render() {
@@ -41,11 +46,9 @@ class Header extends Component {
                     </li>
                     <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
                     </ul>
-                    <i class="bi bi-list mobile-nav-toggle"></i>
+                    <i class="bi bi-list mobile-nav-toggle" onClick={toggleMobile}></i>
                 </nav>
-                {/* <a href="#cart" class="book-a-table-btn scrollto d-none d-lg-flex">Carrito</a> */}
-                
-		        <a onClick={toggleCart} class="book-a-table-btn scrollto d-none d-lg-flex" href='#'>Carrito</a>
+		        <a onClick={toggleCart} class="book-a-table-btn scrollto d-lg-flex" href='#'>Carrito</a>
 
                 </div>
             </header>
