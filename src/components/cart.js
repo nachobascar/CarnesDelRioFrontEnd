@@ -25,7 +25,7 @@ class Cart extends Component {
                     </li> */}
                     <div class="row border-top border-bottom padding-top padding-bottom cart-item">
                         <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"/></div>
+                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg">Product image</img></div>
                             <div class="col">
                                 <div class="row text-muted">Shirt</div>
                                 <div class="row">Cotton T-shirt</div>
