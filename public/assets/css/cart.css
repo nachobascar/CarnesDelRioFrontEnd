@@ -44,22 +44,28 @@
   
   
   
-  /* .cd-img-replace {
-     replace text with a background-image 
-    display: inline-block;
-    overflow: hidden;
-    text-indent: 100%;
-    white-space: nowrap;
-  } */
-  
-  /* -------------------------------- 
-  
-  xheader 
-  
-  -------------------------------- */
-
-
-  
+  .checkout-btn {
+    margin: 0 0 0 15px;
+    border: 2px solid #cda45e;
+    color: #fff;
+    border-radius: 50px;
+    padding: 8px 25px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
+  .checkout-btn:hover {
+    background: #cda45e;
+    color: #fff;
+  }
+  @media (max-width: 992px) {
+    .checkout-btn {
+      margin: 0 15px 0 0;
+      padding: 8px 20px;
+    }
+  }
   
   
   @media only screen and (min-width: 1200px) {

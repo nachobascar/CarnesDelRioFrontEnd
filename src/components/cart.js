@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Cart extends Component {
     render() {
         return (
-            <div class="sidecart">
+            <div class="sidecart d-flex align-items-center flex-column">
                 <h2 class="cd-cart-h2">Cart</h2>
                 <ul class="cd-cart-items">
                     {/* <li class="cd-cart-item">
@@ -37,12 +37,11 @@ class Cart extends Component {
                 </ul>
 
                 <div class="cd-cart-total">
-                    <p>Total <span>$39.96</span></p>
+                    <p>Total: <span>$39.96</span></p>
                 </div>
 
                 <a href="#0" class="checkout-btn">Checkout</a>
                 
-                <p class="cd-go-to-cart"><a href="#0">Go to cart page</a></p>
             </div>
         );
     }
