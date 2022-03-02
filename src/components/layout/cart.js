@@ -6,23 +6,6 @@ class Cart extends Component {
             <div class="sidecart d-flex align-items-center flex-column">
                 <h2 class="cd-cart-h2">Cart</h2>
                 <ul class="cd-cart-items">
-                    {/* <li class="cd-cart-item">
-                        <span class="cd-qty">1x</span> Product Name
-                        <div class="cd-price">$9.99</div>
-                        <a href="#0" class="cd-cart-link cd-item-remove cd-img-replace">Remove</a>
-                    </li>
-
-                    <li class="cd-cart-item">
-                        <span class="cd-qty">2x</span> Product Name
-                        <div class="cd-price">$19.98</div>
-                        <a href="#0" class="cd-cart-link cd-item-remove cd-img-replace">Remove</a>
-                    </li>
-
-                    <li class="cd-cart-item">
-                        <span class="cd-qty">1x</span> Product Name
-                        <div class="cd-price">$9.99</div>
-                        <a href="#0" class="cd-cart-link cd-item-remove cd-img-replace">Remove</a>
-                    </li> */}
                     <div class="row border-top border-bottom padding-top padding-bottom cart-item">
                         <div class="row main align-items-center">
                             <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></img></div>

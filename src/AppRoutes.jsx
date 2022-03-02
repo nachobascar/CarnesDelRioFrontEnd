@@ -3,24 +3,25 @@ import { Route, Routes } from 'react-router-dom';
 import AuthContextProvider from './contexts/AuthContext';
 
 // Header and Footer
-import Header from "./components/header.js";
-import Footer from "./components/footer.js";
+import Header from "./components/layout/header.js";
+import Footer from "./components/layout/footer.js";
 
 // Home page
-import Home from "./components/home.js";
-import Menu from './components/menu.js';
-import Events from './components/events.js';
-import BookATable from './components/bookATable.js';
-import Testimonials from './components/testimonials.js';
-import Gallery from './components/gallery.js';
-import Chefs from './components/chefs.js';
-import Contact from './components/contact.js';
+import Home from "./components/home/home.js";
+import Menu from './components/home/menu.js';
+import Events from './components/home/events.js';
+import BookATable from './components/home/bookATable.js';
+import Testimonials from './components/home/testimonials.js';
+import Gallery from './components/home/gallery.js';
+import Chefs from './components/home/chefs.js';
+import Contact from './components/home/contact.js';
 
 // Cart page
-import Cart from "./components/cart.js";
+import Cart from "./components/layout/cart.js";
 
-// Login
-import Login from "./components/login.js";
+// Session page
+import Login from "./components/session/login.js";
+import Register from "./components/session/register.js";
 
 export default function AppRoutes() {
   return (
@@ -42,6 +43,7 @@ export default function AppRoutes() {
                     </div>
                 } />
                 <Route path="login" element={<Login/>} />
+                <Route path="register" element={<Register/>} />
                 <Route path="*" element={<div>Not Found</div>} />
             </Routes>
             <Footer />

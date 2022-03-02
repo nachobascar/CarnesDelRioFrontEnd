@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import { Navigate  } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 
 const initialValues = {
@@ -84,7 +84,7 @@ const Login = function (errorType = null) {
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-center links">
-                            ¿No tienes una cuenta?<a href="#">Registrarse</a>
+                            ¿No tienes una cuenta?<a href="register">Registrarse</a>
                         </div>
                         <div class="d-flex justify-content-center">
                             <a href="#">¿Olvidó su contraseña?</a>
