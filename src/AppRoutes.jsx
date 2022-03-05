@@ -23,6 +23,14 @@ import Cart from "./components/layout/cart.js";
 import Login from "./components/session/login.js";
 import Register from "./components/session/register.js";
 
+// User page
+import UserPage from "./components/user/show.js";
+import UserVerification from "./components/user/verification.js";
+import UserForgotPassword from './components/user/forgotPassword';
+import UserPasswordRecovery from './components/user/passwordRecovery';
+import UserConfirmNewPassword from './components/user/confirmNewPassword';
+import UserChangePassword from './components/user/changePassword';
+
 export default function AppRoutes() {
   return (
     <AuthContextProvider>
@@ -44,6 +52,12 @@ export default function AppRoutes() {
                 } />
                 <Route path="login" element={<Login/>} />
                 <Route path="register" element={<Register/>} />
+                <Route path="account" element={<UserPage/>} />
+                <Route path="verification" element={<UserVerification/>} />
+                <Route path="forgotPassword" element={<UserForgotPassword/>} />
+                <Route path="passwordRecovery" element={<UserPasswordRecovery/>} />
+                <Route path="confirmNewPassword" element={<UserConfirmNewPassword/>} />
+                <Route path="changePassword" element={<UserChangePassword/>} />
                 <Route path="*" element={<div>Not Found</div>} />
             </Routes>
             <Footer />

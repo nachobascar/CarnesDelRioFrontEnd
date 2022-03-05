@@ -35,6 +35,7 @@ const Register = function (errorType = null) {
     const [values, setValues] = useState(initialValues);
     const [loading, setLoading] = useState(false);
     const [errors, setErrorMessage] = useState('');
+    const [registrationMessage, setRegistrationMessage] = useState('');
     const { currentUser, handleUserLogin } = useAuth();
     const navigate = useNavigate();
 
@@ -54,7 +55,7 @@ const Register = function (errorType = null) {
                 const error = await response.json();
                 throw error;
             }
-            navigate('/login');
+            setRegistrationMessage('Usuario registrado correctamente, por favor confirmar su cuenta en su correo electrónico');
         } catch (error) {
             console.log(error);
             setErrorMessage(error);
@@ -73,6 +74,11 @@ const Register = function (errorType = null) {
                 <div class="card">
                     <div class="card-header">
                         <h3>Crear cuenta</h3>
+                        {registrationMessage && 
+                            <div class="alert alert-success" role="alert">
+                                {registrationMessage}
+                            </div>
+                        }
                         {errors &&
                             <>
                                 <ul>

@@ -51,7 +51,7 @@ const Header = function() {
                     {currentUser ? (
                             <li class="dropdown"><a href="#"><span>Cuenta</span> <i class="bi bi-chevron-down"></i></a>
                                 <ul>
-                                    <li><a class="nav-link" href="#">Administrar cuenta</a></li>
+                                    <li><a class="nav-link" href="account">Administrar cuenta</a></li>
                                     {currentUser.admin &&
                                         <li><a class="nav-link" href="#">Administrar página</a></li>
                                     }
