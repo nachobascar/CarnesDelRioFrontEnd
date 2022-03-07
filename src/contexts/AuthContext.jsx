@@ -23,6 +23,7 @@ import React, {
     const handleUserLogout = () => {
       clearStoredUser();
       clearSessionExpDate();
+      navigate('/');
     };
   
     const handleAutomaticLogout = useCallback(() => {

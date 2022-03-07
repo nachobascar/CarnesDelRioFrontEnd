@@ -1,15 +1,42 @@
 import React, { Component, useState, useEffect } from 'react';
-import { Navigate  } from 'react-router-dom';
+import { Navigate, useNavigate  } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 
 
 const UserPage = function (errorType = null) {
-    const { currentUser } = useAuth();
+    const { currentUser, handleUserLogout } = useAuth();
 
     const [user, setUser] = useState('');
 
+    const navigate = useNavigate();
+
     if (!currentUser) return <Navigate to="/" />;
+
+    const handleRemoveUser = function handleRemoveUser(event) {
+        event.preventDefault();
+        if (confirm('¿Está seguro que desea eliminar su cuenta?')) {
+            const requestOptions = {
+                method: 'DELETE',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': currentUser.token_type + ' ' + currentUser.access_token,  
+                },
+            };
+            try {
+                fetch(`${process.env.REACT_APP_API_URL}/users/${currentUser.id}`, requestOptions).then((response) => {
+                    if (!response.ok) {
+                        response.text().then((error) => {
+                            throw new Error(error);
+                        });
+                    }
+                    navigate('/logout');
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    };
 
     // Get user info
     useEffect(() => {
@@ -49,14 +76,14 @@ const UserPage = function (errorType = null) {
                         </div>
                         <div class="d-flex links">
                             <p>Teléfono: {user.phone}</p>
-                            <a href="/changePassword">Modificar</a>
+                            <a href="/changePhone">Modificar</a>
                         </div>
                         <br/>
                         <a class="book-a-table-btn" href="/changePassword">Cambiar contraseña</a>
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-center links">
-                            ¿No está satisfecho?<a href="/deleteAccount">Eliminar cuenta</a>
+                            ¿No está satisfecho?<a onClick={handleRemoveUser} href="#">Eliminar cuenta</a>
                         </div>
                     </div>
                 </div>

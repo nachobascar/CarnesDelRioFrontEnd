@@ -104,7 +104,7 @@ const Register = function (errorType = null) {
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
-                                    <Field type="email" class="form-control" name="email" id="email" required/>
+                                    <Field type="email" class="form-control" placeholder="Correo electrónico" name="email" id="email" required/>
                                 </div>
                                 {(errors.phone && touched.phone) && (
                                     <div className="bottom-margin">{errors.phone}</div>
@@ -113,7 +113,7 @@ const Register = function (errorType = null) {
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <Field type="text" placeholder="+569xxxxxxxx" class="form-control" name="phone" id="phone" required/>
+                                    <Field type="text" placeholder="+569xxxxxxxx" class="form-control" placeholder="Teléfono" name="phone" id="phone" required/>
                                 </div>
                                 {(errors.password && touched.password) && (
                                     <div className="bottom-margin">{errors.password}</div>
@@ -122,7 +122,7 @@ const Register = function (errorType = null) {
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                     </div>
-                                    <Field type="password" class="form-control" name="password" id="password" required/>
+                                    <Field type="password" class="form-control" placeholder="Contraseña" name="password" id="password" required/>
                                 </div>
                                 {(errors.confirmation && touched.confirmation) && (
                                     <div className="bottom-margin">{errors.confirmation}</div>
@@ -131,7 +131,7 @@ const Register = function (errorType = null) {
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                     </div>
-                                    <Field type="password" class="form-control" name="confirmation" id="confirmation" required/>
+                                    <Field type="password" class="form-control" placeholder="Confirmar contraseña" name="confirmation" id="confirmation" required/>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" value="Registrarse" class="btn float-right login_btn"/>

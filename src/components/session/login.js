@@ -10,7 +10,6 @@ const initialValues = {
 
 
 const Login = function (errorType = null) {
-    console.log(process.env.REACT_APP_API_URL);
     const [values, setValues] = useState(initialValues);
     const [loading, setLoading] = useState(false);
     const [error, setErrorMessage] = useState('');
@@ -69,13 +68,13 @@ const Login = function (errorType = null) {
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="email" class="form-control" name="email" id="email" value={values.email} onChange={handleChange} required/>
+                                <input type="email" class="form-control" placeholder="Correo electrónico" name="email" id="email" value={values.email} onChange={handleChange} required/>
                             </div>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input type="password" class="form-control" name="password" id="password" value={values.password} onChange={handleChange} required/>
+                                <input type="password" class="form-control" placeholder="Contraseña" name="password" id="password" value={values.password} onChange={handleChange} required/>
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Login" class="btn float-right login_btn"/>

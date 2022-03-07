@@ -22,6 +22,7 @@ import Cart from "./components/layout/cart.js";
 // Session page
 import Login from "./components/session/login.js";
 import Register from "./components/session/register.js";
+import Logout from "./components/session/logout.js";
 
 // User page
 import UserPage from "./components/user/show.js";
@@ -30,8 +31,17 @@ import UserForgotPassword from './components/user/forgotPassword';
 import UserPasswordRecovery from './components/user/passwordRecovery';
 import UserConfirmNewPassword from './components/user/confirmNewPassword';
 import UserChangePassword from './components/user/changePassword';
+import UserChangePhone from './components/user/changePhone';
+
+// Admin page
+import AdminPage from "./components/pageAdmin/index";
+import AdminProducts from "./components/pageAdmin/products";
+import AdminEditProducts from "./components/pageAdmin/editProducts";
+import AdminCategories from "./components/pageAdmin/categories";
+import AdminEditCategories from "./components/pageAdmin/editCategories";
 
 export default function AppRoutes() {
+
   return (
     <AuthContextProvider>
         <div id="layout-page">
@@ -47,19 +57,30 @@ export default function AppRoutes() {
                         <Gallery/>
                         <Chefs/>
                         <Contact/>
-                        <Cart/>
                     </div>
                 } />
                 <Route path="login" element={<Login/>} />
                 <Route path="register" element={<Register/>} />
+                <Route path="logout" element={<Logout/>} />
                 <Route path="account" element={<UserPage/>} />
                 <Route path="verification" element={<UserVerification/>} />
                 <Route path="forgotPassword" element={<UserForgotPassword/>} />
                 <Route path="passwordRecovery" element={<UserPasswordRecovery/>} />
                 <Route path="confirmNewPassword" element={<UserConfirmNewPassword/>} />
                 <Route path="changePassword" element={<UserChangePassword/>} />
+                <Route path="changePhone" element={<UserChangePhone/>} />
+                <Route path="admin" element={<AdminPage/>} >
+                    <Route index element={<></>} />
+                    <Route path="products" element={<AdminProducts/>}/>
+                    <Route path="products/:id" element={<AdminEditProducts/>} />
+                    <Route path="categories" element={<AdminCategories/>}/>
+                    <Route path="categories/:id" element={<AdminEditCategories/>} />
+                    <Route path="*" element={<div>Not Found</div>} />
+                </Route>
                 <Route path="*" element={<div>Not Found</div>} />
+            
             </Routes>
+            <Cart/>
             <Footer />
         </div>
     </AuthContextProvider>
