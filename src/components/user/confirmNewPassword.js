@@ -33,6 +33,7 @@ const UserConfirmNewPassword = function () {
     const navigate = useNavigate();
     
     const [userToken, storeUserToken, clearUserToken] = useLocalStorage('userToken');
+    console.log('UserToken: ', userToken);
     
     const [searchParams, setSearchParams] = useSearchParams();
     
