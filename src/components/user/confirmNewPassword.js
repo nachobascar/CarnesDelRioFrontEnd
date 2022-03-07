@@ -38,6 +38,7 @@ const UserConfirmNewPassword = function () {
     const [searchParams, setSearchParams] = useSearchParams();
     
     const handleSubmit = async function handleSubmit(values) {
+        console.log("values: ", values);
         setLoading(true);
         values.verificationToken = userToken.verificationToken;
         const requestOptions = {
