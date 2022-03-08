@@ -79,11 +79,11 @@ const Register = function (errorType = null) {
                                 {registrationMessage}
                             </div>
                         }
-                        {errors &&
+                        {errors.errors &&
                             <>
                                 <ul>
-                                {errors.map((error) => (
-                                    <li key={error.message}>{error.message}</li>
+                                {errors.errors.map((error) => (
+                                        <li key={error.message}>{error.message}</li>
                                 ))}
                                 </ul>
                             </>

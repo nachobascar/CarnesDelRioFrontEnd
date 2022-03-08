@@ -11,7 +11,7 @@ const initialValues = {
 const UserForgotPassword = function (errorType = null) {
     const [values, setValues] = useState(initialValues);
     const [loading, setLoading] = useState(false);
-    const [error, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const [registrationMessage, setRegistrationMessage] = useState('');
     const { currentUser, handleUserLogin } = useAuth();
 
@@ -25,7 +25,6 @@ const UserForgotPassword = function (errorType = null) {
     const handleSubmit = async function handleSubmit(event) {
         setLoading(true);
         event.preventDefault();
-        console.log(values);
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -34,8 +33,8 @@ const UserForgotPassword = function (errorType = null) {
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/users/passwordRecovery`, requestOptions);
             if (!response.ok) {
-                const error = await response.text();
-                throw new Error(error);
+                const error = await response.json();
+                throw error;
             }
             setRegistrationMessage('Check your email for a password reset link.');
         } catch (error) {
@@ -59,9 +58,9 @@ const UserForgotPassword = function (errorType = null) {
                     <div class="card-header">
                         <h3>Recuperar contraseña</h3>
                         {registrationMessage && <p>{registrationMessage}</p>}
-                        {error ? (
-                            <h4>{error}</h4>
-                        ):(<></>)}
+                        {errorMessage &&
+                            <h4>{errorMessage}</h4>
+                        }
                     </div>
                     <div class="card-body margin-top">
                         <form onSubmit={handleSubmit}>
