@@ -54,7 +54,7 @@ const select = (el, all = false) => {
     })
   }
 
-const Header = function() {
+const Header = function({cart}) {
     const { currentUser, handleUserLogout } = useAuth();
 
     useEffect(() => {
@@ -105,7 +105,7 @@ const Header = function() {
                 <i class="bi bi-list mobile-nav-toggle" onClick={toggleMobile}></i>
             </nav>
             {currentUser &&
-                <a onClick={toggleCart} class="book-a-table-btn scrollto d-lg-flex">Carrito</a>
+                <a onClick={toggleCart} class="book-a-table-btn scrollto d-lg-flex">Carrito {cart.length > 0 && '-'} {cart.length > 0 && cart.reduce((a,b) => a+b.quantity || 0, 0)}</a>
             }
 
             </div>

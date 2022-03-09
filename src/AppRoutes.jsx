@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AuthContextProvider from './contexts/AuthContext';
+
 
 // Header and Footer
 import Header from "./components/layout/header.js";
@@ -41,16 +42,17 @@ import AdminCategories from "./components/pageAdmin/categories";
 import AdminEditCategories from "./components/pageAdmin/editCategories";
 
 export default function AppRoutes() {
+  const [cart, setCart] = useState([]);
 
   return (
     <AuthContextProvider>
         <div id="layout-page">
-            <Header/>
+            <Header cart={cart}/>
             <Routes>
                 <Route index element={
                     <div>
                         <Home />
-                        <Menu/>
+                        <Menu setCart={setCart}/>
                         <Events/>
                         <BookATable/>
                         <Testimonials/>
@@ -80,7 +82,7 @@ export default function AppRoutes() {
                 <Route path="*" element={<div>Not Found</div>} />
             
             </Routes>
-            <Cart/>
+            <Cart  cart={cart} setCart={setCart}/>
             <Footer />
         </div>
     </AuthContextProvider>

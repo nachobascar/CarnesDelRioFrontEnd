@@ -1,5 +1,15 @@
 .cart-signs {
     font-size: 1.5rem;
+    color: #CDA45E!important;
+}
+
+.cart-page-cross {
+  font-size: 2rem;
+  color: #CDA45E;
+}
+
+.cart-item-image {
+  border-radius: 50%;
 }
 
 .sidecart{
@@ -17,7 +27,7 @@
     background: rgba(12, 11, 9, 0.6);
   }
   
-  @media(max-width: 400px){
+  @media(max-width: 500px){
     .sidecart{
       width: 100vw;
       right: -100vw;

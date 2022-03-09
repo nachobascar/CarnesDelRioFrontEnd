@@ -1,31 +1,114 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 
-class Cart extends Component {
-    render() {
-        return (
-            <div class="sidecart d-flex align-items-center flex-column">
+
+const Cart = function({cart, setCart}) {
+    
+    const {currentUser} = useAuth();
+
+    const handleDeleteItem = async function(id) {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': currentUser.token_type + ' ' + currentUser.access_token
+            },
+        };
+        fetch(`${process.env.REACT_APP_API_URL}/orders/${id}`, requestOptions)
+            .then((response) => {
+                if (!response.ok) {
+                    console.log("Error al verificar el usuario");
+                    console.log(response);
+                    throw response;
+                }
+                response.json().then((cart) => {
+                    setCart(cart);
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    const handleAddItem = async function handleAddItem(product, num) {
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': currentUser.token_type + ' ' + currentUser.access_token
+            },
+            body: JSON.stringify({
+                productId: product.product.id,
+                quantity: product.quantity + num
+            }),
+        };
+        try {   
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/orders/${product.id}`, requestOptions);
+            if (!response.ok) {
+                const error = await response.json();
+                throw error;
+            }
+            setCart(await response.json());
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // Get cart from api call
+    useEffect(() => {
+        if (currentUser) {
+            const requestOptions = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': currentUser.token_type + ' ' + currentUser.access_token
+                },
+            };
+            fetch(`${process.env.REACT_APP_API_URL}/orders`, requestOptions)
+            .then((response) => {
+                if (!response.ok) {
+                    console.log("Error al verificar el usuario");
+                    console.log(response);
+                    throw response;
+                }
+                response.json().then((cart) => {
+                    setCart(cart);
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+    }, []);
+
+    return (
+        <div class="sidecart d-flex align-items-center flex-column">
+            {currentUser && 
+                <>
                 <h2 class="cd-cart-h2">Cart</h2>
                 <ul class="cd-cart-items">
-                    <div class="row border-top border-bottom padding-top padding-bottom cart-item">
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></img></div>
-                            <div class="col">
-                                <div class="row text-muted">Shirt</div>
-                                <div class="row">Cotton T-shirt</div>
+                    {cart.sort((a, b) => Date.parse( a.createdAt) - Date.parse(b.createdAt)).map((item) => (
+                        <div key={item.id} class="row border-top border-bottom padding-top padding-bottom cart-item">
+                            <div class="row main align-items-center">
+                                <div class="col-2"><img class="img-fluid cart-item-image" src={item.product.image}></img></div>
+                                <div class="col">
+                                    <div class="row">{item.product.name}</div>
+                                </div>
+                                <div class="col d-flex align-items-center"> <a onClick={() => handleAddItem(item, -1)} class="cart-signs" >-</a>&emsp;{item.quantity} &emsp;<a onClick={() => handleAddItem(item, 1)} class="cart-signs" >+</a> </div>
+                                <div class="col d-flex align-items-center"><span >${item.product.price.toLocaleString()}</span> <i class="element-pointer bi-x cart-page-cross" onClick={() => handleDeleteItem(item.id)}></i></div>
                             </div>
-                            <div class="col"> <a class="cart-signs" href="#">-</a><a class="cart-signs">1</a><a class="cart-signs" href="#">+</a> </div>
-                            <div class="col">&euro; 44.00 <a class="close" href="#">&#10005;</a></div>
                         </div>
-                    </div>
+                    ))}
                 </ul>
 
                 <div class="cd-cart-total">
-                    <p>Total: <span>$39.96</span></p>
+                    <p>Total: <span>${cart.reduce((a, b) => a + b.product.price*b.quantity || 0, 0).toLocaleString()}</span></p>
                 </div>
 
                 <a href="#0" class="checkout-btn">Checkout</a>
-                
-            </div>
-        );
-    }
-} export default Cart;
+                </>
+            }
+        </div>
+    );
+    
+} 
+export default Cart;
