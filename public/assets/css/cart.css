@@ -12,6 +12,25 @@
   border-radius: 50%;
 }
 
+@media (max-width: 450px) {
+  .header-cart-btn {
+    display: none;
+  }
+}
+
+#mobile-view-cart-quantity {
+  display: none !important;
+}
+
+@media (max-width: 400px) {
+  #mobile-view-cart-quantity {
+    display: block !important;
+  }
+  #desktop-view-cart-quantity {
+    display: none !important;
+  }
+}
+
 .sidecart{
     width: 500px;
     min-width: 300px;

@@ -84,17 +84,29 @@ const Cart = function({cart, setCart}) {
         <div class="sidecart d-flex align-items-center flex-column">
             {currentUser && 
                 <>
-                <h2 class="cd-cart-h2">Cart</h2>
+                <h2 class="cd-cart-h2">Carro</h2>
                 <ul class="cd-cart-items">
                     {cart.sort((a, b) => Date.parse( a.createdAt) - Date.parse(b.createdAt)).map((item) => (
                         <div key={item.id} class="row border-top border-bottom padding-top padding-bottom cart-item">
-                            <div class="row main align-items-center">
+                            <div class="row main align-items-center ">
                                 <div class="col-2"><img class="img-fluid cart-item-image" src={item.product.image}></img></div>
                                 <div class="col">
                                     <div class="row">{item.product.name}</div>
                                 </div>
-                                <div class="col d-flex align-items-center"> <a onClick={() => handleAddItem(item, -1)} class="cart-signs" >-</a>&emsp;{item.quantity} &emsp;<a onClick={() => handleAddItem(item, 1)} class="cart-signs" >+</a> </div>
-                                <div class="col d-flex align-items-center"><span >${item.product.price.toLocaleString()}</span> <i class="element-pointer bi-x cart-page-cross" onClick={() => handleDeleteItem(item.id)}></i></div>
+
+                                <div id="desktop-view-cart-quantity" class="col d-flex align-items-center">
+                                    <div class="d-flex align-items-center justify-content-center"> <a onClick={() => handleAddItem(item, -1)} class="cart-signs" >-</a>&emsp;<span class="align-middle">{item.quantity}</span> &emsp;<a onClick={() => handleAddItem(item, 1)} class="cart-signs" >+</a> </div>
+                                </div>
+                                
+                                <div class="col d-flex align-items-center">
+                                    <div >${item.product.price.toLocaleString()}</div> 
+                                </div>
+                                <div class="col d-flex align-items-end">
+                                    <i class="element-pointer bi-x ml-auto cart-page-cross" onClick={() => handleDeleteItem(item.id)}></i>
+                                </div>
+                            </div>
+                            <div id="mobile-view-cart-quantity" class="row d-flex align-items-center">
+                                <div class="d-flex align-items-center justify-content-center"> <a onClick={() => handleAddItem(item, -1)} class="cart-signs" >-</a>&emsp;<span class="align-middle">{item.quantity}</span> &emsp;<a onClick={() => handleAddItem(item, 1)} class="cart-signs" >+</a> </div>
                             </div>
                         </div>
                     ))}
@@ -104,7 +116,7 @@ const Cart = function({cart, setCart}) {
                     <p>Total: <span>${cart.reduce((a, b) => a + b.product.price*b.quantity || 0, 0).toLocaleString()}</span></p>
                 </div>
 
-                <a href="#0" class="checkout-btn">Checkout</a>
+                <a href="#0" class="checkout-btn">Comprar</a>
                 </>
             }
         </div>

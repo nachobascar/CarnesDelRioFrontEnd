@@ -95,7 +95,6 @@ const Menu = function({setCart}) {
   }
 
   const handleClick = function handleClick(product, rerender=false) {
-    
     if (!select('.menu-page-open-item') || rerender) { 
       setSelectedItem(product);
       popupItem(product);
