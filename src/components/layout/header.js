@@ -105,7 +105,7 @@ const Header = function({cart}) {
                 <i class="bi bi-list mobile-nav-toggle" onClick={toggleMobile}></i>
             </nav>
             {currentUser &&
-                <a onClick={toggleCart} class="book-a-table-btn scrollto d-lg-flex"><span class="header-cart-btn">Carro {cart.length > 0 && '-\u00A0'}</span> {cart.length > 0 && cart.reduce((a,b) => a+b.quantity || 0, 0)}</a>
+                <a onClick={toggleCart} class="book-a-table-btn scrollto d-lg-flex">{cart.length == 0 && 'Carro'}<span class="header-cart-btn">{cart.length > 0 && 'Carro -\u00A0'}</span> {cart.length > 0 && cart.reduce((a,b) => a+b.quantity || 0, 0)}</a>
             }
 
             </div>

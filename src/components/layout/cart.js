@@ -116,7 +116,7 @@ const Cart = function({cart, setCart}) {
                     <p>Total: <span>${cart.reduce((a, b) => a + b.product.price*b.quantity || 0, 0).toLocaleString()}</span></p>
                 </div>
 
-                <a href="#0" class="checkout-btn">Comprar</a>
+                <a href="#" class="checkout-btn  mr-0">Comprar</a>
                 </>
             }
         </div>
