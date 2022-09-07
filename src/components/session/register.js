@@ -69,7 +69,7 @@ const Register = function (errorType = null) {
     }
 
     return (
-        <div class="container">
+        <div class="container login-page">
             <div class="d-flex justify-content-center h-100">
                 <div class="card">
                     <div class="card-header">
@@ -113,7 +113,7 @@ const Register = function (errorType = null) {
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <Field type="text" placeholder="+569xxxxxxxx" class="form-control" placeholder="Teléfono" name="phone" id="phone" required/>
+                                    <Field type="text" placeholder="+569xxxxxxxx" class="form-control" name="phone" id="phone" required/>
                                 </div>
                                 {(errors.password && touched.password) && (
                                     <div className="bottom-margin">{errors.password}</div>
