@@ -53,27 +53,36 @@ const ProductList = function () {
     return (
         <div class="admin-page-list">
             <ul>
-                {products.map((product) => (
-                    <li key={product.id}>
-                        <div class="admin-page-list-item d-flex flex-row">
-                            <div class="admin-page-list-item-image d-flex align-self-center">
-                                <img src={product.image} class="admin-page-img" />
-                            </div>
-                            <div class="admin-page-list-item-info d-flex flex-row">
-                                <div class="d-flex flex-column admin-page-list-item-description">
-                                    <h3>{product.name}</h3>
-                                    <p>{product.description}</p>
+                {products.length ?
+                    products.map((product) => (
+                        <li key={product.id}>
+                            <div class="admin-page-list-item d-flex flex-row">
+                                <div class="admin-page-list-item-image d-flex align-self-center">
+                                    <img src={product.image} class="admin-page-img" />
                                 </div>
-                                <div class="d-flex flex-md-column align-self-center">
-                                    <p class="admin-page-item-price">${product.price.toLocaleString()}</p>
+                                <div class="admin-page-list-item-info d-flex flex-row">
+                                    <div class="d-flex flex-column admin-page-list-item-description">
+                                        <h3>{product.name}</h3>
+                                        <p>{product.description}</p>
+                                    </div>
+                                    <div class="d-flex flex-md-column align-self-center">
+                                        <p class="admin-page-item-price">${product.price.toLocaleString()}</p>
+                                    </div>
+                                </div>
+                                <div class="admin-page-list-item-actions d-flex flex-column ml-auto align-self-center">
+                                    <a onClick={() => handleRecover(product.id)} class="admin-page-list-item-btn book-a-table-btn">Recuperar</a>
                                 </div>
                             </div>
-                            <div class="admin-page-list-item-actions d-flex flex-column ml-auto align-self-center">
-                                <a onClick={() => handleRecover(product.id)} class="admin-page-list-item-btn book-a-table-btn">Recuperar</a>
-                            </div>
+                        </li>
+                )) : 
+                <div class="admin-page-list-item d-flex flex-row">
+                    <div class="admin-page-list-item-info d-flex flex-row">
+                        <div class="d-flex flex-column admin-page-list-item-description">
+                            <h3>No hay productos eliminados</h3>
                         </div>
-                    </li>
-                ))}
+                    </div>
+                </div>
+            }
             </ul>
         </div>
     )
