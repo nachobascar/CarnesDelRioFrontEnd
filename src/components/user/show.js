@@ -106,7 +106,8 @@ const UserPage = function (errorType = null) {
                         <br/>
                         <div className="d-flex links justify-content-between align-items-center">
                             <h3>Direcciones:</h3>
-                            <a  href="/newAddress">Nueva Dirección</a>
+                            <a className='book-a-table-btn text-center d-block' href="/newAddress">Nueva Dirección</a>
+                            <br/><br/><br/>
                         </div>
                         {user.addresses && user.addresses.length ? 
                             <ul className="list-group ">
