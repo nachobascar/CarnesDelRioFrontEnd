@@ -4,7 +4,7 @@ import useAuth from '../../hooks/useAuth';
 
 
 
-const UserPage = function (errorType = null) {
+const UserPage = function ({isLoading}) {
     const { currentUser, handleUserLogout } = useAuth();
 
     const [user, setUser] = useState('');
@@ -65,6 +65,7 @@ const UserPage = function (errorType = null) {
 
     // Get user info
     useEffect(() => {
+        isLoading(true);
         const requestOptions = {
             headers: { 
                 'Content-Type': 'application/json',
@@ -80,10 +81,12 @@ const UserPage = function (errorType = null) {
             }
             response.json().then((user) => {
                 setUser(user);
+                isLoading(false);
             });                
           })
           .catch( (error) => {
               console.log(error);
+              isLoading(false);
           });
           
       }, []);

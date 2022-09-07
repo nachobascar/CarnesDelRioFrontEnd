@@ -8,9 +8,8 @@ const initialValues = {
 };
 
 
-const UserForgotPassword = function (errorType = null) {
+const UserForgotPassword = function ({isLoading}) {
     const [values, setValues] = useState(initialValues);
-    const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [registrationMessage, setRegistrationMessage] = useState('');
     const { currentUser, handleUserLogin } = useAuth();
@@ -23,7 +22,7 @@ const UserForgotPassword = function (errorType = null) {
     };    
     
     const handleSubmit = async function handleSubmit(event) {
-        setLoading(true);
+        isLoading(true);
         event.preventDefault();
         const requestOptions = {
             method: 'POST',
@@ -40,14 +39,11 @@ const UserForgotPassword = function (errorType = null) {
         } catch (error) {
             setErrorMessage(error.message);
         } finally {
-            setLoading(false);
+            isLoading(false);
         }
     };
 
-    if (loading) {
-        return <h1>Loading...</h1>;
-    }
-    
+
     if (currentUser) return <Navigate to="/" />;
 
 

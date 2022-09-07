@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
   });
 
 
-const AdminProducts = function (errorType = null) {
+const AdminProducts = function ({isLoading}) {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
 
@@ -36,6 +36,7 @@ const AdminProducts = function (errorType = null) {
                 'Authorization': currentUser.token_type + ' ' + currentUser.access_token
             },
         };
+        isLoading(true);
         fetch(`${process.env.REACT_APP_API_URL}/products`, requestOptions)
             .then((response) => {
                 if (!response.ok) {
@@ -49,7 +50,10 @@ const AdminProducts = function (errorType = null) {
             })
             .catch((error) => {
                 console.log(error);
+            }).finally(() => {
+                isLoading(false);
             });
+        isLoading(true);
         fetch(`${process.env.REACT_APP_API_URL}/categories`, requestOptions)
             .then((response) => {
                 if (!response.ok) {
@@ -63,10 +67,13 @@ const AdminProducts = function (errorType = null) {
             })
             .catch((error) => {
                 console.log(error);
+            }).finally(() => {
+                isLoading(false);
             });
     }, []);
 
     const handleSubmit = async function handleSubmit(values) {
+        isLoading(true);
         const requestOptions = {
             method: 'POST',
             headers: { 
@@ -84,8 +91,10 @@ const AdminProducts = function (errorType = null) {
                 const error = await response.json();
                 throw error;
             }
+            isLoading(false);
             location.reload();
         } catch (error) {
+            isLoading(false);
             console.log(error);
         } 
     };
@@ -142,7 +151,7 @@ const AdminProducts = function (errorType = null) {
                                         </div>
                                         <div id="admin-page-checkboxes">
                                             {products.map((product) => (
-                                                <label htmlFor={product.name}>
+                                                <label key={product.id} htmlFor={product.name}>
                                                     {product.name}
                                                     <Field key={product.id} type="checkbox" id={product.name} name="products" value={product.id.toString()}/>
                                                 </label>

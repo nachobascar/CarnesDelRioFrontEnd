@@ -33,7 +33,7 @@ const validationSchema = Yup.object().shape({
   });
 
 
-const AdminEditProducts = function (errorType = null) {
+const AdminEditProducts = function ({isLoading}) {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [imageUrl, setImageUrl] = useState('');
@@ -59,6 +59,7 @@ const AdminEditProducts = function (errorType = null) {
                 'Authorization': currentUser.token_type + ' ' + currentUser.access_token
             },
         };
+        isLoading(true);
         fetch(`${process.env.REACT_APP_API_URL}/products`, requestOptions)
             .then((response) => {
                 if (!response.ok) {
@@ -67,13 +68,15 @@ const AdminEditProducts = function (errorType = null) {
                     throw response;
                 }
                 response.json().then((products) => {
-                    console.log(products); 
                     setProducts(products.sort((a, b) => Date.parse( a.createdAt) - Date.parse(b.createdAt)));
                 });
             })
             .catch((error) => {
                 console.log(error);
+            }).finally(() => {
+                isLoading(false);
             });
+        isLoading(true);
         fetch(`${process.env.REACT_APP_API_URL}/categories`, requestOptions)
             .then((response) => {
                 if (!response.ok) {
@@ -87,7 +90,10 @@ const AdminEditProducts = function (errorType = null) {
             })
             .catch((error) => {
                 console.log(error);
+            }).finally(() => {
+                isLoading(false);
             });
+        isLoading(true);
         fetch(`${process.env.REACT_APP_API_URL}/products/${id}`, requestOptions)
             .then((response) => {
                 if (!response.ok) {
@@ -111,10 +117,13 @@ const AdminEditProducts = function (errorType = null) {
             })
             .catch((error) => {
                 console.log(error);
+            }).finally(() => {
+                isLoading(false);
             });
     }, []);
 
     const handleSubmit = async function handleSubmit(values) {
+        isLoading(true);
         const requestOptions = {
             method: 'PUT',
             headers: { 
@@ -132,10 +141,12 @@ const AdminEditProducts = function (errorType = null) {
                 const error = await response.json();
                 throw error;
             }
+            isLoading(false);
             location.reload();
         } catch (error) {
+            isLoading(false);
             console.log(error);
-        } 
+        }
     };
 
 
@@ -220,7 +231,7 @@ const AdminEditProducts = function (errorType = null) {
                                         </div>
                                         <div id="admin-page-checkboxes">
                                             {categories.map((category) => (
-                                                <label htmlFor={category.name}>
+                                                <label key={category.id} htmlFor={category.name}>
                                                     {category.name}
                                                     <Field key={category.id} type="checkbox" id={category.name} name="categories" value={category.id.toString()}/>
                                                 </label>

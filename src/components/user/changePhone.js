@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
   });
 
 
-const UserChangePhone = function () {
+const UserChangePhone = function ({isLoading}) {
 
     const [errors, setErrorMessage] = useState('');
     const {currentUser} = useAuth();
@@ -28,6 +28,7 @@ const UserChangePhone = function () {
     const navigate = useNavigate();
     
     const handleSubmit = async function handleSubmit(values) {
+        isLoading(true);
         const requestOptions = {
             method: 'PUT',
             headers: { 
@@ -38,6 +39,7 @@ const UserChangePhone = function () {
         };
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${currentUser.id}`, requestOptions);
+            isLoading(false);
             if (!response.ok) {
                 const error = await response.json();
                 throw error;

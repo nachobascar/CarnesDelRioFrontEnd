@@ -23,23 +23,21 @@ const validationSchema = Yup.object().shape({
   });
 
 
-const UserConfirmNewPassword = function () {
+const UserConfirmNewPassword = function ({isLoading}) {
     
     const { currentUser } = useAuth();
-    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState('');
     const [errors, setErrorMessage] = useState('');
     
     const navigate = useNavigate();
     
     const [userToken, storeUserToken, clearUserToken] = useLocalStorage('userToken');
-    console.log('UserToken: ', userToken);
     
     const [searchParams, setSearchParams] = useSearchParams();
     
     const handleSubmit = async function handleSubmit(values) {
         console.log("values: ", values);
-        setLoading(true);
+        isLoading(true);
         values.verificationToken = userToken.verificationToken;
         const requestOptions = {
             method: 'PUT',
@@ -61,7 +59,7 @@ const UserConfirmNewPassword = function () {
             setErrorMessage(error);
         } finally {
             clearUserToken();
-            setLoading(false);
+            isLoading(false);
         }
     };
 

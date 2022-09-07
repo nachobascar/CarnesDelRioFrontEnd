@@ -4,16 +4,15 @@ import useAuth from '../../hooks/useAuth';
 
 
 
-const UserVerification = function (errorType = null) {
+const UserVerification = function ({isLoading}) {
     
     const { currentUser } = useAuth();
-    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState('');
 
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
-        setLoading(true);
+        isLoading(true);
         fetch(`${process.env.REACT_APP_API_URL}/users/verification?token=${searchParams.get('token')}`)
           .then((response) => {
             if (!response.ok) {
@@ -58,14 +57,10 @@ const UserVerification = function (errorType = null) {
             );
           })
           .finally( () => {
-              setLoading(false);
+            isLoading(false);
             });
           
       }, []);
-
-    if (loading) {
-        return <h1>Loading...</h1>;
-    }
 
     return page;
 

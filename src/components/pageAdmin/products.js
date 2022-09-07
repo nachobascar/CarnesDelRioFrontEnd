@@ -33,7 +33,7 @@ const validationSchema = Yup.object().shape({
   });
 
 
-const AdminProducts = function (errorType = null) {
+const AdminProducts = function ({isLoading}) {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [imageUrl, setImageUrl] = useState('');
@@ -56,6 +56,7 @@ const AdminProducts = function (errorType = null) {
                 'Authorization': currentUser.token_type + ' ' + currentUser.access_token
             },
         };
+        isLoading(true);
         fetch(`${process.env.REACT_APP_API_URL}/products`, requestOptions)
             .then((response) => {
                 if (!response.ok) {
@@ -69,7 +70,10 @@ const AdminProducts = function (errorType = null) {
             })
             .catch((error) => {
                 console.log(error);
+            }).finally(() => {
+                isLoading(false);
             });
+        isLoading(true);
         fetch(`${process.env.REACT_APP_API_URL}/categories`, requestOptions)
             .then((response) => {
                 if (!response.ok) {
@@ -83,10 +87,13 @@ const AdminProducts = function (errorType = null) {
             })
             .catch((error) => {
                 console.log(error);
+            }).finally(() => {
+                isLoading(false);
             });
     }, []);
 
     const handleSubmit = async function handleSubmit(values) {
+        isLoading(true);
         const requestOptions = {
             method: 'POST',
             headers: { 
@@ -104,11 +111,13 @@ const AdminProducts = function (errorType = null) {
                 const error = await response.json();
                 throw error;
             }
+            isLoading(false);
             location.reload();
         } catch (error) {
+            isLoading(false);
             console.log(error);
-        } 
-    };
+        }
+    }; 
     
 
     const number = 20000;
@@ -193,7 +202,7 @@ const AdminProducts = function (errorType = null) {
                                         </div>
                                         <div id="admin-page-checkboxes">
                                             {categories.map((category) => (
-                                                <label htmlFor={category.name}>
+                                                <label key={category.id} htmlFor={category.name}>
                                                     {category.name}
                                                     <Field key={category.id} type="checkbox" id={category.name} name="categories" value={category.id.toString()}/>
                                                 </label>

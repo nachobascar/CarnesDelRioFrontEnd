@@ -28,7 +28,7 @@ const validationSchema = Yup.object().shape({
   });
 
 
-const UserChangePassword = function () {
+const UserChangePassword = function ({isLoading}) {
 
     const [errors, setErrorMessage] = useState('');
     const {currentUser} = useAuth();
@@ -38,6 +38,7 @@ const UserChangePassword = function () {
     const navigate = useNavigate();
     
     const handleSubmit = async function handleSubmit(values) {
+        isLoading(true);
         const requestOptions = {
             method: 'PUT',
             headers: { 
@@ -56,6 +57,8 @@ const UserChangePassword = function () {
         } catch (error) {
             console.log(error);
             setErrorMessage(error);
+        } finally {
+            isLoading(false);
         }
     };
 

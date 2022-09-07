@@ -9,9 +9,8 @@ const initialValues = {
 };
 
 
-const Login = function (errorType = null) {
+const Login = function ({isLoading}) {
     const [values, setValues] = useState(initialValues);
-    const [loading, setLoading] = useState(false);
     const [error, setErrorMessage] = useState('');
     const { currentUser, handleUserLogin } = useAuth();
 
@@ -23,7 +22,7 @@ const Login = function (errorType = null) {
     };    
     
     const handleSubmit = async function handleSubmit(event) {
-        setLoading(true);
+        isLoading(true);
         event.preventDefault();
         const requestOptions = {
             method: 'POST',
@@ -41,13 +40,9 @@ const Login = function (errorType = null) {
         } catch (error) {
             setErrorMessage(error.message);
         } finally {
-            setLoading(false);
+            isLoading(false);
         }
     };
-
-    if (loading) {
-        return <h1>Loading...</h1>;
-    }
     
     if (currentUser) return <Navigate to="/" />;
 

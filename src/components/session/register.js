@@ -31,9 +31,8 @@ const validationSchema = Yup.object().shape({
       .required('Confirmación de contraseña es requerida')
   });
 
-const Register = function (errorType = null) {
+const Register = function ({isLoading}) {
     const [values, setValues] = useState(initialValues);
-    const [loading, setLoading] = useState(false);
     const [errors, setErrorMessage] = useState('');
     const [registrationMessage, setRegistrationMessage] = useState('');
     const { currentUser, handleUserLogin } = useAuth();
@@ -42,7 +41,7 @@ const Register = function (errorType = null) {
     if (currentUser) return <Navigate to="/" />;
     
     const handleSubmit = async function handleSubmit(values) {
-        setLoading(true);
+        isLoading(true);
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -60,13 +59,9 @@ const Register = function (errorType = null) {
             console.log(error);
             setErrorMessage(error);
         } finally {
-            setLoading(false);
+            isLoading(false);
         }
     };
-
-    if (loading) {
-        return <h1>Loading...</h1>;
-    }
 
     return (
         <div className="container login-page">

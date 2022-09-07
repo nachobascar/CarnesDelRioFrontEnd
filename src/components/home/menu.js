@@ -29,7 +29,7 @@ const on = (type, el, listener, all = false) => {
 
 
 
-const Menu = function({setCart}) {
+const Menu = function({setCart, isLoading}) {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [productQuantity, setProductQuantity] = useState(1);
@@ -65,6 +65,7 @@ const Menu = function({setCart}) {
         }),
     };
     try {
+        isLoading(true);
         const response = await fetch(`${process.env.REACT_APP_API_URL}/cart`, requestOptions);
         if (!response.ok) {
             const error = await response.json();
@@ -74,7 +75,9 @@ const Menu = function({setCart}) {
         handleClick();
     } catch (error) {
         console.log(error);
-    } 
+    } finally {
+        isLoading(false);
+    }
   }
 
 
@@ -182,6 +185,7 @@ const Menu = function({setCart}) {
             'Content-Type': 'application/json',
         },
     };
+    isLoading(true);
     fetch(`${process.env.REACT_APP_API_URL}/products`, requestOptions)
         .then((response) => {
             if (!response.ok) {
@@ -195,7 +199,10 @@ const Menu = function({setCart}) {
         })
         .catch((error) => {
             console.log(error);
+        }).finally(() => {
+            isLoading(false);
         });
+    isLoading(true);
     fetch(`${process.env.REACT_APP_API_URL}/categories`, requestOptions)
         .then((response) => {
             if (!response.ok) {
@@ -209,6 +216,8 @@ const Menu = function({setCart}) {
         })
         .catch((error) => {
             console.log(error);
+        }).finally(() => {
+            isLoading(false);
         });
   }, []);
 
@@ -227,7 +236,7 @@ const Menu = function({setCart}) {
               <ul id="menu-flters">
                 <li data-filter="*" className="filter-active">All</li>
                 {categories.map((category) => (
-                  <li data-filter={`.filter-${category.name}`}>{category.name}</li>
+                  <li key={category.id} data-filter={`.filter-${category.name}`}>{category.name}</li>
                 ))}
               </ul>
             </div>
@@ -236,7 +245,7 @@ const Menu = function({setCart}) {
           <div className="row menu-container" data-aos="fade-up" data-aos-delay="200">
 
             {products.map((product) => (
-              <div onClick={() => handleClick(product)} className={`col-lg-6 element-pointer menu-item ${product.Categories.map((category) => (`filter-${category.name}`)).join(' ')}`}>
+              <div key={product.id} onClick={() => handleClick(product)} className={`col-lg-6 element-pointer menu-item ${product.Categories.map((category) => (`filter-${category.name}`)).join(' ')}`}>
                 <img src={product.image} className="menu-img element-pointer" alt=""/>
                 <div className="menu-content">
                   <a>{product.name}</a><span>${product.price.toLocaleString()}</span>

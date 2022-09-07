@@ -46,6 +46,15 @@ import AdminAreas from './components/pageAdmin/areas';
 
 export default function AppRoutes() {
   const [cart, setCart] = useState([]);
+  const [loading, setLoading] = useState(0);
+
+  function isLoading (load) {
+    if (load) {
+        setLoading(loading + 1);
+    } else {
+        setLoading(loading - 1);
+    }
+  }
 
   return (
     <AuthContextProvider>
@@ -55,7 +64,7 @@ export default function AppRoutes() {
                 <Route index element={
                     <div>
                         <Home />
-                        <Menu setCart={setCart}/>
+                        <Menu setCart={setCart} isLoading={isLoading}/>
                         <Events/>
                         <BookATable/>
                         <Testimonials/>
@@ -64,33 +73,47 @@ export default function AppRoutes() {
                         <Contact/>
                     </div>
                 } />
-                <Route path="login" element={<Login/>} />
-                <Route path="register" element={<Register/>} />
-                <Route path="logout" element={<Logout/>} />
-                <Route path="account" element={<UserPage/>} />
-                <Route path="verification" element={<UserVerification/>} />
-                <Route path="forgotPassword" element={<UserForgotPassword/>} />
-                <Route path="passwordRecovery" element={<UserPasswordRecovery/>} />
-                <Route path="confirmNewPassword" element={<UserConfirmNewPassword/>} />
-                <Route path="changePassword" element={<UserChangePassword/>} />
-                <Route path="changePhone" element={<UserChangePhone/>} />
+                <Route path="login" element={<Login isLoading={isLoading}/>} />
+                <Route path="register" element={<Register isLoading={isLoading}/>} />
+                <Route path="logout" element={<Logout isLoading={isLoading}/>} />
+                <Route path="account" element={<UserPage isLoading={isLoading}/>} />
+                <Route path="verification" element={<UserVerification isLoading={isLoading}/>} />
+                <Route path="forgotPassword" element={<UserForgotPassword isLoading={isLoading}/>} />
+                <Route path="passwordRecovery" element={<UserPasswordRecovery isLoading={isLoading}/>} />
+                <Route path="confirmNewPassword" element={<UserConfirmNewPassword isLoading={isLoading}/>} />
+                <Route path="changePassword" element={<UserChangePassword isLoading={isLoading}/>} />
+                <Route path="changePhone" element={<UserChangePhone isLoading={isLoading}/>} />
                 <Route path="admin" element={<AdminPage/>} >
                     <Route index element={<></>} />
-                    <Route path="products" element={<AdminProducts/>}/>
-                    <Route path="products/:id" element={<AdminEditProducts/>} />
-                    <Route path="removedProducts" element={<AdminRemovedProducts/>} />
-                    <Route path="categories" element={<AdminCategories/>}/>
-                    <Route path="categories/:id" element={<AdminEditCategories/>} />
-                    <Route path="areas" element={<AdminAreas/>}/>
+                    <Route path="products" element={<AdminProducts isLoading={isLoading}/>}/>
+                    <Route path="products/:id" element={<AdminEditProducts isLoading={isLoading}/>} />
+                    <Route path="removedProducts" element={<AdminRemovedProducts isLoading={isLoading}/>} />
+                    <Route path="categories" element={<AdminCategories isLoading={isLoading}/>}/>
+                    <Route path="categories/:id" element={<AdminEditCategories isLoading={isLoading}/>} />
+                    <Route path="areas" element={<AdminAreas isLoading={isLoading}/>}/>
                     <Route path="*" element={<div>Not Found</div>} />
                 </Route>
-                <Route path="newAddress" element={<CreateAddress/>} />
+                <Route path="newAddress" element={<CreateAddress isLoading={isLoading}/>} />
 
                 <Route path="*" element={<div>Not Found</div>} />
             
             </Routes>
-            <Cart  cart={cart} setCart={setCart}/>
+            <Cart  cart={cart} setCart={setCart} isLoading={isLoading}/>
             <Footer />
+            {loading > 0 && 
+                <React.Fragment>
+                    <div className="spinner-loader" style={{zIndex: 2000, display: "block", paddingRight: '17px'}}>
+                        <div className="d-flex w-100 h-100 justify-content-center align-items-center">
+                            <div className="spinner-grow  text-warning" role="status" style={{width: '4rem', height:'4rem'}}>
+                                <span className="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="modal-backdrop fade in modal-stack" style={{zIndex: 1999}}></div>
+                    <div id="overlay" style={{zIndex: 1999}}>
+                    </div>
+                </React.Fragment>
+            }
         </div>
     </AuthContextProvider>
   );

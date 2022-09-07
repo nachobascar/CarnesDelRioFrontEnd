@@ -23,10 +23,8 @@ const validationSchema = Yup.object().shape({
   });
 
 
-const UserPasswordRecovery = function (errorType = null) {
+const UserPasswordRecovery = function ({isLoading}) {
     
-    const { currentUser } = useAuth();
-    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState('');
 
     const [userToken, storeUserToken, clearUserToken] = useLocalStorage('userToken');
@@ -35,7 +33,7 @@ const UserPasswordRecovery = function (errorType = null) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setLoading(true);
+        isLoading(true);
         const verificationToken = searchParams.get('token');
         fetch(`${process.env.REACT_APP_API_URL}/users/passwordRecovery/validate?token=${verificationToken}`)
           .then((response) => {
@@ -67,14 +65,11 @@ const UserPasswordRecovery = function (errorType = null) {
             );
           })
           .finally( () => {
-              setLoading(false);
+            isLoading(false);
             });
           
       }, []);
 
-    if (loading) {
-        return <h1>Loading...</h1>;
-    }
 
     return page;
 

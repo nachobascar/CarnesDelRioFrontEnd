@@ -2,12 +2,13 @@ import React, {useEffect, useState} from "react";
 import useAuth from "../../hooks/useAuth";
 
 
-const ProductList = function () {
+const ProductList = function ({isLoading}) {
     const [products, setProducts] = useState([]);
 
     const {currentUser} = useAuth();
 
     const handleRecover = async function handleRecover(id) {
+        isLoading(true);
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -21,13 +22,16 @@ const ProductList = function () {
                 const error = await response.json();
                 throw error;
             }
+            isLoading(false);
             location.reload();
         } catch (error) {
             console.log(error);
+            isLoading(false);
         }
     };
 
     useEffect(() => {
+        isLoading(true);
         const requestOptions = {
             headers: {
                 'Content-Type': 'application/json',
@@ -47,6 +51,8 @@ const ProductList = function () {
             })
             .catch((error) => {
                 console.log(error);
+            }).finally(() => {
+                isLoading(false);
             });
     }, []);
 

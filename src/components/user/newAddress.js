@@ -37,7 +37,7 @@ const groupAreasByState = function (areas) {
     return areasByState;
 };
 
-const CreateAddress = function () {
+const CreateAddress = function ({isLoading}) {
 
     const [errors, setErrorMessage] = useState('');
     const {currentUser} = useAuth();
@@ -54,6 +54,7 @@ const CreateAddress = function () {
     useEffect(() => {
         const id = searchParams.get('id');
         if (id) {
+            isLoading(true);
             const requestOptions = {
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,6 +77,8 @@ const CreateAddress = function () {
                     nombre: data.nombre,
                     descripcion: data.descripcion,
                 });
+            }).finally(() => {
+                isLoading(false);
             });
         }
     }, [currentUser]);

@@ -21,10 +21,12 @@ function toggleDropDown(e, id){
 
 const select = (el, all = false) => {
     el = el.trim()
-    if (all) {
-      return [...document.querySelectorAll(el)]
-    } else {
-      return document.querySelector(el)
+    if (el) {
+      if (all) {
+        return [...document.querySelectorAll(el)]
+      } else {
+        return document.querySelector(el)
+      }
     }
   }
 

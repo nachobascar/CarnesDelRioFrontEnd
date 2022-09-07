@@ -45,13 +45,9 @@ const groupAreasByState = function (areas) {
     
 
 
-const AdminAreas = function (errorType = null) {
-    const [products, setProducts] = useState([]);
-    const [categories, setCategories] = useState([]);
-    const [imageUrl, setImageUrl] = useState('');
+const AdminAreas = function ({isLoading}) {
     const [areas, setAreas] = useState([]);
     const [validAreas, setValidAreas] = useState([]);
-    const [collapsed, setCollapsed] = useState({});
 
     const {currentUser} = useAuth();
 
@@ -66,6 +62,7 @@ const AdminAreas = function (errorType = null) {
                 'Authorization': currentUser.token_type + ' ' + currentUser.access_token
             },
         };
+        isLoading(true);
         fetch(`${process.env.REACT_APP_API_URL}/addresses/areas`, requestOptions).then(async (response) => {
             if (!response.ok) {
                 console.log("Error al obtener las areas");
@@ -76,6 +73,8 @@ const AdminAreas = function (errorType = null) {
             setAreas(groupAreasByState(areas));
         }).catch((error) => {
             console.log(error);
+        }).finally(() => {
+            isLoading(false);
         });
     }, []);
 
@@ -116,22 +115,6 @@ const AdminAreas = function (errorType = null) {
           console.log(error);
       } 
     };
-    
-
-    const number = 20000;
-
-    var expanded = false;
-
-    function showCheckboxes() {
-        const checkboxes = document.getElementById("admin-page-checkboxes");
-        if (!expanded) {
-            checkboxes.style.display = "block";
-            expanded = true;
-        } else {
-            checkboxes.style.display = "none";
-            expanded = false;
-        }
-    }
 
     return (
         <> 
