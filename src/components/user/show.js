@@ -64,7 +64,7 @@ const UserPage = function (errorType = null) {
       }, []);
 
     return (
-        <div class="container user-show-container position-static">
+        <div class="container user-show-container position-static login-page">
             <div class="d-flex justify-content-center h-100 position-static">
                 <div class="card position-static">
                     <div class="card-header ">

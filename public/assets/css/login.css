@@ -10,7 +10,7 @@ margin-top: 5vh;
 margin-bottom: 5vh;
 }
 
-.card{
+.login-page .card{
 height: 370px;
 margin-top: auto;
 margin-bottom: auto;
@@ -29,7 +29,7 @@ color: white;
 cursor: pointer;
 }
 
-.card-header h3{
+.login-page .card-header h3{
 color: white;
 }
 

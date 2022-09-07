@@ -42,6 +42,7 @@ import AdminEditProducts from "./components/pageAdmin/editProducts";
 import AdminCategories from "./components/pageAdmin/categories";
 import AdminEditCategories from "./components/pageAdmin/editCategories";
 import AdminRemovedProducts from "./components/pageAdmin/removedProducts";
+import AdminAreas from './components/pageAdmin/areas';
 
 export default function AppRoutes() {
   const [cart, setCart] = useState([]);
@@ -80,6 +81,7 @@ export default function AppRoutes() {
                     <Route path="removedProducts" element={<AdminRemovedProducts/>} />
                     <Route path="categories" element={<AdminCategories/>}/>
                     <Route path="categories/:id" element={<AdminEditCategories/>} />
+                    <Route path="areas" element={<AdminAreas/>}/>
                     <Route path="*" element={<div>Not Found</div>} />
                 </Route>
                 <Route path="newAddress" element={<CreateAddress/>} />

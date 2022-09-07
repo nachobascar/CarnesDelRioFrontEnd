@@ -35,6 +35,23 @@
     border-right: 1px solid #000;
 }
 
+.admin-page-list .btn:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.admin-page-list.secondary {
+    background-color: #b9c7ff;
+    color: white;
+}
+.admin-page-list.secondary h2 {
+    background-color: #7386D5 !important;	
+    color: white;
+}
+.admin-page-list.secondary .card {
+    background-color: #b9c7ff;
+}
+
 .admin-page-list-item {
     border-bottom: 1px solid #000;
     height:100%;

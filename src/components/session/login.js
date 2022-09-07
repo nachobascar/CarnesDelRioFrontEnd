@@ -53,10 +53,10 @@ const Login = function (errorType = null) {
 
 
     return (
-        <div class="container">
+        <div class="container login-page">
             <div class="d-flex justify-content-center h-100">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="login card-header">
                         <h3>Iniciar Sesión</h3>
                         {error ? (
                             <h4>{error}</h4>

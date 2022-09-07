@@ -66,7 +66,7 @@ const UserConfirmNewPassword = function () {
     };
 
     return (
-        <div class="container">
+        <div class="container login-page">
             <div class="d-flex justify-content-center h-100">
                 <div class="card">
                     <div class="card-header">
