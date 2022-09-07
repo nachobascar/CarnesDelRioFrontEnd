@@ -38,6 +38,31 @@ const UserPage = function (errorType = null) {
         }
     };
 
+    const handleRemoveAddress = function handleRemoveAddress(addressId) {
+        if (confirm('¿Está seguro que desea eliminar esta dirección?')) {
+            const requestOptions = {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': currentUser.token_type + ' ' + currentUser.access_token,
+                },
+            };
+            try {
+                fetch(`${process.env.REACT_APP_API_URL}/addresses/${addressId}`, requestOptions).then((response) => {
+                    if (!response.ok) {
+                        response.text().then((error) => {
+                            throw new Error(error);
+                        });
+                    }
+                    const newAddresses = user.addresses.filter((address) => address.id !== addressId);
+                    setUser({ ...user, addresses: newAddresses });
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    };
+
     // Get user info
     useEffect(() => {
         const requestOptions = {
@@ -87,10 +112,13 @@ const UserPage = function (errorType = null) {
                             <ul class="list-group ">
                                 {user.addresses.map((address) => (
                                     <li class="user-addresses list-group-item ">
-                                        {address.nombre && <p>{address.nombre}</p>}
+                                        <div class="d-flex links justify-content-between">
+                                            {address.nombre && <p class=".text-dark">{address.nombre}</p>}
+                                            <a href={`/newAddress?id=${address.id}`}>Editar</a>
+                                        </div>
                                         <div class="d-flex links justify-content-between">
                                             <p class=".text-dark">{address.calleNum}</p>
-                                            <a href="/changeAddress">Eliminar</a>
+                                            <a href="#" onClick={() => handleRemoveAddress(address.id)} >Eliminar</a>
                                         </div>
                                     </li>
                                 ))}
