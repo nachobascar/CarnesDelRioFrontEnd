@@ -12,26 +12,26 @@ const AdminPage = function (errorType = null) {
 
     return (
         <>  
-        <div class="admin-page-container wrapper">
-            <nav id="sidebar" class="">
+        <div className="admin-page-container wrapper">
+            <nav id="sidebar" className="">
 
-                <ul class="list-unstyled components">
+                <ul className="list-unstyled components">
                     <p></p>
-                    <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Administrar productos</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu" wfd-invisible="true">
+                    <li className="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle">Administrar productos</a>
+                        <ul className="collapse list-unstyled" id="homeSubmenu" wfd-invisible="true">
                             <li>
-                                <a href="/admin/products" class="admin-page-submenu">Productos</a>
+                                <a href="/admin/products" className="admin-page-submenu">Productos</a>
                             </li>
                             <li>
-                                <a href="/admin/categories" class="admin-page-submenu">Categorías</a>
+                                <a href="/admin/categories" className="admin-page-submenu">Categorías</a>
                             </li>
                             <li>
-                                <a href="/admin/promotions" class="admin-page-submenu">Promociones</a>
+                                <a href="/admin/promotions" className="admin-page-submenu">Promociones</a>
                             </li>
 
                             <li>
-                                <a href="/admin/removedProducts" class="admin-page-submenu">Productos Eliminados</a>
+                                <a href="/admin/removedProducts" className="admin-page-submenu">Productos Eliminados</a>
                             </li>
                         </ul>
                     </li>
@@ -39,8 +39,8 @@ const AdminPage = function (errorType = null) {
                         <a href="/admin/areas">Regiones y Comunas</a>
                     </li>
                     <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu" wfd-invisible="true">
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle">Pages</a>
+                        <ul className="collapse list-unstyled" id="pageSubmenu" wfd-invisible="true">
                             <li>
                                 <a href="#">Page 1</a>
                             </li>

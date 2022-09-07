@@ -148,14 +148,14 @@ const CreateAddress = function () {
     };
 
     return (
-        <div class="container login-page">
-            <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                    <div class="card-header">
+        <div className="container login-page">
+            <div className="d-flex justify-content-center h-100">
+                <div className="card">
+                    <div className="card-header">
                         <h3>Guardar Dirección</h3>
                         {errors && <p>{errors.message}</p>}
                     </div>
-                    <div class="card-body margin-top">
+                    <div className="card-body margin-top">
                         <Formik
                             enableReinitialize
                             initialValues={initialValues}
@@ -167,11 +167,11 @@ const CreateAddress = function () {
                                 {(errors.region && touched.region) && (
                                     <div className="bottom-margin">{errors.region}</div>
                                 )}
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+                                <div className="input-group form-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="bi bi-geo-alt-fill"></i></span>
                                     </div>
-                                    <Field as="select" class="form-control" name="region" id="region">
+                                    <Field as="select" className="form-control" name="region" id="region">
                                         <option value="">Seleccione una región</option>
                                         {Object.keys(areas).map((state, index) => (
                                             <option key={index} value={state}>{state}</option>
@@ -181,11 +181,11 @@ const CreateAddress = function () {
                                 {(errors.comuna && touched.comuna) && (
                                     <div className="bottom-margin">{errors.comuna}</div>
                                 )}
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+                                <div className="input-group form-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="bi bi-geo-alt-fill"></i></span>
                                     </div>
-                                    <Field as="select" class="form-control" name="comuna" id="comuna">
+                                    <Field as="select" className="form-control" name="comuna" id="comuna">
                                         <option value="">Seleccione una comuna</option>
                                         {values.region && areas[values.region] &&
                                             areas[values.region].map((comuna, index) => (
@@ -197,32 +197,32 @@ const CreateAddress = function () {
                                 {(errors.calleNum && touched.calleNum) && (
                                     <div className="bottom-margin">{errors.calleNum}</div>
                                 )}
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+                                <div className="input-group form-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="bi bi-geo-alt-fill"></i></span>
                                     </div>
-                                    <Field type="text" class="form-control" placeholder="Calle y número" name="calleNum" id="calleNum" />
+                                    <Field type="text" className="form-control" placeholder="Calle y número" name="calleNum" id="calleNum" />
                                 </div>
                                 
                                 {(errors.nombre && touched.nombre) && (
                                     <div className="bottom-margin">{errors.nombre}</div>
                                 )}
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+                                <div className="input-group form-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="bi bi-geo-alt-fill"></i></span>
                                     </div>
-                                    <Field type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" />
+                                    <Field type="text" className="form-control" placeholder="Nombre" name="nombre" id="nombre" />
                                 </div>
                                 
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+                                <div className="input-group form-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="bi bi-geo-alt-fill"></i></span>
                                     </div>
-                                    <Field type="text" class="form-control" placeholder="Descripción" name="descripcion" id="descripcion" />
+                                    <Field type="text" className="form-control" placeholder="Descripción" name="descripcion" id="descripcion" />
                                 </div>
 
-                                <div class="form-group">
-                                    <input type="submit" value="Confirmar" class="btn float-right login_btn"/>
+                                <div className="form-group">
+                                    <input type="submit" value="Confirmar" className="btn float-right login_btn"/>
                                 </div>
                             </Form>
                         )}

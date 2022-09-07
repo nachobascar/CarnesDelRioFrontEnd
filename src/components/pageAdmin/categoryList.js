@@ -26,28 +26,28 @@ const CategoryList = function ({categories}) {
     };
 
     return (
-        <div class="admin-page-list">
+        <div className="admin-page-list">
             <ul>
                 {categories.length ? 
                     categories.map((category) => (
                         <li key={category.id}>
-                            <div class="admin-page-list-item d-flex flex-row">
-                                <div class="admin-page-list-item-info d-flex flex-row">
-                                    <div class="d-flex flex-column admin-page-list-item-description">
+                            <div className="admin-page-list-item d-flex flex-row">
+                                <div className="admin-page-list-item-info d-flex flex-row">
+                                    <div className="d-flex flex-column admin-page-list-item-description">
                                         <h3>{category.name}</h3>
                                         <p>{category.description}</p>
                                     </div>
                                 </div>
-                                <div class="admin-page-list-item-actions d-flex flex-column ml-auto align-self-center">
-                                    <a href={`/admin/categories/${category.id}`} class="admin-page-list-item-btn book-a-table-btn">Editar</a>
-                                    <a href={`#`} onClick={() => {handleRemove(category.id)}} class="admin-page-list-item-btn book-a-table-btn">Eliminar</a>
+                                <div className="admin-page-list-item-actions d-flex flex-column ml-auto align-self-center">
+                                    <a href={`/admin/categories/${category.id}`} className="admin-page-list-item-btn book-a-table-btn">Editar</a>
+                                    <a href={`#`} onClick={() => {handleRemove(category.id)}} className="admin-page-list-item-btn book-a-table-btn">Eliminar</a>
                                 </div>
                             </div>
                         </li>
                     )) :
-                    <div class="admin-page-list-item d-flex flex-row">
-                        <div class="admin-page-list-item-info d-flex flex-row">
-                            <div class="d-flex flex-column admin-page-list-item-description">
+                    <div className="admin-page-list-item d-flex flex-row">
+                        <div className="admin-page-list-item-info d-flex flex-row">
+                            <div className="d-flex flex-column admin-page-list-item-description">
                                 <h3>No hay categorías</h3>
                             </div>
                         </div>

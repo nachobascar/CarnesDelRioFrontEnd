@@ -23,17 +23,17 @@ const UserVerification = function (errorType = null) {
             }
 
             setPage(
-                <div class="container login-page">
-                    <div class="d-flex justify-content-center h-100">
-                        <div class="card">
-                            <div class="card-header">
+                <div className="container login-page">
+                    <div className="d-flex justify-content-center h-100">
+                        <div className="card">
+                            <div className="card-header">
                                 <h3>Usuario verificado</h3>
                             </div>
-                            <div class="card-body">
+                            <div className="card-body">
                                 <p>El usuario ha sido verificado correctamente</p>
                                 <br/><br/>
-                                <div class="d-flex justify-content-center links">
-                                    <a href="login" class="book-a-table-btn">Iniciar sesión</a>
+                                <div className="d-flex justify-content-center links">
+                                    <a href="login" className="book-a-table-btn">Iniciar sesión</a>
                                 </div>
                             </div>
                         </div>
@@ -43,13 +43,13 @@ const UserVerification = function (errorType = null) {
           })
           .catch( (error) => {
             setPage(
-                <div class="container">
-                    <div class="d-flex justify-content-center h-100">
-                        <div class="card">
-                            <div class="card-header">
+                <div className="container">
+                    <div className="d-flex justify-content-center h-100">
+                        <div className="card">
+                            <div className="card-header">
                                 <h3>Error al verificar el usuario</h3>
                             </div>
-                            <div class="card-body">
+                            <div className="card-body">
                                 <p>{error.message}</p>
                             </div>
                         </div>

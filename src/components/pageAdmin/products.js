@@ -128,9 +128,9 @@ const AdminProducts = function (errorType = null) {
 
     return (
         <> 
-            <div class="admin-page-body d-flex">
+            <div className="admin-page-body d-flex">
                 <ProductList products={products}/>
-                <div class="admin-page-new-element-form">
+                <div className="admin-page-new-element-form">
                     <h2>Agregar Producto</h2>
                     <Formik
                         initialValues={initialValues}
@@ -145,7 +145,7 @@ const AdminProducts = function (errorType = null) {
                             setFieldValue
                         }) => (
                             <Form>
-                                <div class="admin-page-new-element-form-inputs">
+                                <div className="admin-page-new-element-form-inputs">
                                     <div className="form-group">
                                         <Field type='file' name='imageUrl' className="form-control" onChange={(event) => {
                                             const reader = new FileReader();
@@ -159,37 +159,37 @@ const AdminProducts = function (errorType = null) {
                                             console.log();
                                             handleChange(event);
                                         }}/>
-                                        {errors.imageUrl && touched.imageUrl && <div class="admin-page-new-element-form-inputs-error">{errors.imageUrl}</div>}
+                                        {errors.imageUrl && touched.imageUrl && <div className="admin-page-new-element-form-inputs-error">{errors.imageUrl}</div>}
                                         {imageUrl && (
                                             <img src={imageUrl} alt="photo" className="img-thumbnail mt-2" height={200} width={200} />
                                         )}
                                     </div>
-                                    <div class="admin-page-new-element-form-inputs-group">
+                                    <div className="admin-page-new-element-form-inputs-group">
                                         <label htmlFor="name">Nombre</label>
                                         <Field type="text" name="name" id="name" value={values.name} />
-                                        {errors.name && touched.name && <div class="admin-page-new-element-form-inputs-error">{errors.name}</div>}
+                                        {errors.name && touched.name && <div className="admin-page-new-element-form-inputs-error">{errors.name}</div>}
                                     </div>
-                                    <div class="admin-page-new-element-form-inputs-group admin-page-description-div">
-                                        <label htmlFor="description" class="admin-page-description-label">Descripción</label>
+                                    <div className="admin-page-new-element-form-inputs-group admin-page-description-div">
+                                        <label htmlFor="description" className="admin-page-description-label">Descripción</label>
                                         <Field as="textarea" name="description" id="description" value={values.description} />
-                                        {errors.description && touched.description && <div class="admin-page-new-element-form-inputs-error">{errors.description}</div>}
+                                        {errors.description && touched.description && <div className="admin-page-new-element-form-inputs-error">{errors.description}</div>}
                                     </div>
-                                    <div class="admin-page-new-element-form-inputs-group admin-page-num-input">
+                                    <div className="admin-page-new-element-form-inputs-group admin-page-num-input">
                                         <label htmlFor="price">Precio</label>
                                         <Field type="number" name="price" id="price" value={values.price} />
-                                        {errors.price && touched.price && <div class="admin-page-new-element-form-inputs-error">{errors.price}</div>}
+                                        {errors.price && touched.price && <div className="admin-page-new-element-form-inputs-error">{errors.price}</div>}
                                     </div>
-                                    <div class="admin-page-new-element-form-inputs-group admin-page-num-input">
+                                    <div className="admin-page-new-element-form-inputs-group admin-page-num-input">
                                         <label htmlFor="stock">Cantidad</label>
                                         <Field type="number" name="stock" id="stock" value={values.stock} />
-                                        {errors.stock && touched.stock && <div class="admin-page-new-element-form-inputs-error">{errors.stock}</div>}
+                                        {errors.stock && touched.stock && <div className="admin-page-new-element-form-inputs-error">{errors.stock}</div>}
                                     </div>
-                                    <div class="admin-page-new-element-form-inputs-group admin-page-multiselect">
-                                        <div class="admin-page-selectBox" onClick={showCheckboxes}>
-                                            <Field  as="select" class="form-control" >
-                                                <option value="" class="text-center">Seleccione las categorías</option>
+                                    <div className="admin-page-new-element-form-inputs-group admin-page-multiselect">
+                                        <div className="admin-page-selectBox" onClick={showCheckboxes}>
+                                            <Field  as="select" className="form-control" >
+                                                <option value="" className="text-center">Seleccione las categorías</option>
                                             </Field>
-                                            <div class="admin-page-overSelect"></div>
+                                            <div className="admin-page-overSelect"></div>
                                         </div>
                                         <div id="admin-page-checkboxes">
                                             {categories.map((category) => (
@@ -199,13 +199,13 @@ const AdminProducts = function (errorType = null) {
                                                 </label>
                                             ))}
                                         </div>
-                                            {errors.category && touched.category && <div class="admin-page-new-element-form-inputs-error">{errors.category}</div>}
+                                            {errors.category && touched.category && <div className="admin-page-new-element-form-inputs-error">{errors.category}</div>}
                                     </div>
                                 </div>
 
 
-                                <div class="admin-page-new-element-form-buttons">
-                                    <button type="submit" class="admin-page-new-element-form-btn">Agregar</button>
+                                <div className="admin-page-new-element-form-buttons">
+                                    <button type="submit" className="admin-page-new-element-form-btn">Agregar</button>
                                 </div>
                             </Form>
                         )}

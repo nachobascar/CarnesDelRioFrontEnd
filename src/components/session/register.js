@@ -69,13 +69,13 @@ const Register = function (errorType = null) {
     }
 
     return (
-        <div class="container login-page">
-            <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                    <div class="card-header">
+        <div className="container login-page">
+            <div className="d-flex justify-content-center h-100">
+                <div className="card">
+                    <div className="card-header">
                         <h3>Crear cuenta</h3>
                         {registrationMessage && 
-                            <div class="alert alert-success" role="alert">
+                            <div className="alert alert-success" role="alert">
                                 {registrationMessage}
                             </div>
                         }
@@ -89,7 +89,7 @@ const Register = function (errorType = null) {
                             </>
                         }
                     </div>
-                    <div class="card-body margin-top">
+                    <div className="card-body margin-top">
                         <Formik
                             initialValues={initialValues}
                             onSubmit={handleSubmit}
@@ -98,50 +98,50 @@ const Register = function (errorType = null) {
                         {({ errors, touched }) => (
                             <Form>
                                 {(errors.email && touched.email) && (
-                                    <div class="bottom-margin">{errors.email}</div>
+                                    <div className="bottom-margin">{errors.email}</div>
                                 )}
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <div className="input-group form-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="fas fa-user"></i></span>
                                     </div>
-                                    <Field type="email" class="form-control" placeholder="Correo electrónico" name="email" id="email" required/>
+                                    <Field type="email" className="form-control" placeholder="Correo electrónico" name="email" id="email" required/>
                                 </div>
                                 {(errors.phone && touched.phone) && (
                                     <div className="bottom-margin">{errors.phone}</div>
                                 )}
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                <div className="input-group form-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="fas fa-phone"></i></span>
                                     </div>
-                                    <Field type="text" placeholder="+569xxxxxxxx" class="form-control" name="phone" id="phone" required/>
+                                    <Field type="text" placeholder="+569xxxxxxxx" className="form-control" name="phone" id="phone" required/>
                                 </div>
                                 {(errors.password && touched.password) && (
                                     <div className="bottom-margin">{errors.password}</div>
                                 )}
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <div className="input-group form-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="fas fa-key"></i></span>
                                     </div>
-                                    <Field type="password" class="form-control" placeholder="Contraseña" name="password" id="password" required/>
+                                    <Field type="password" className="form-control" placeholder="Contraseña" name="password" id="password" required/>
                                 </div>
                                 {(errors.confirmation && touched.confirmation) && (
                                     <div className="bottom-margin">{errors.confirmation}</div>
                                 )}
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <div className="input-group form-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="fas fa-key"></i></span>
                                     </div>
-                                    <Field type="password" class="form-control" placeholder="Confirmar contraseña" name="confirmation" id="confirmation" required/>
+                                    <Field type="password" className="form-control" placeholder="Confirmar contraseña" name="confirmation" id="confirmation" required/>
                                 </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Registrarse" class="btn float-right login_btn"/>
+                                <div className="form-group">
+                                    <input type="submit" value="Registrarse" className="btn float-right login_btn"/>
                                 </div>
                             </Form>
                         )}
                         </Formik>
                     </div>
-                    <div class="card-footer">
-                        <div class="d-flex justify-content-center links">
+                    <div className="card-footer">
+                        <div className="d-flex justify-content-center links">
                             ¿Ya tienes una cuenta?<a href="/login">Iniciar sesión</a>
                         </div>
                     </div>

@@ -15,7 +15,7 @@ const Logout = function (errorType = null) {
 
 
     return (
-        <div class="container"></div>
+        <div className="container"></div>
     )
 };
 

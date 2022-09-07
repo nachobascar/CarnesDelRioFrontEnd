@@ -135,32 +135,32 @@ const AdminAreas = function (errorType = null) {
 
     return (
         <> 
-          <div class="admin-page-body d-flex">
-            <div class="admin-page-list">
-              <h2 class="text-center pt-3 pb-3">Agregar o Eliminar Comunas Válidas Para Despacho</h2>
+          <div className="admin-page-body d-flex">
+            <div className="admin-page-list">
+              <h2 className="text-center pt-3 pb-3">Agregar o Eliminar Comunas Válidas Para Despacho</h2>
               <div id="accordion">
                 {Object.keys(areas).length > 0 ? 
                   Object.entries(areas).map(([state, values], index) => {
                     const header = `head-${index}`;
                     const body = `body-${index}`;
                     return (
-                      <div key={state} class="card">
-                          <div class="card-header" id={header}>
-                            <button  class="btn collapsed btn-block text-left"  data-toggle="collapse" data-target={`#${body}`} aria-expanded="false" aria-controls={`${body}`}>
-                              <h5 class="mb-0">
+                      <div key={state} className="card">
+                          <div className="card-header" id={header}>
+                            <button  className="btn collapsed btn-block text-left"  data-toggle="collapse" data-target={`#${body}`} aria-expanded="false" aria-controls={`${body}`}>
+                              <h5 className="mb-0">
                                   {state}
                               </h5>
                             </button>
                           </div>
                           <div id={body} className='collapse' aria-labelledby={'head'+state} data-parent="#accordion">
-                            <div class="card-body">
-                              <div class='list-group'>
+                            <div className="card-body">
+                              <div className='list-group'>
                                   {values.map((area, areaIndex) => {
                                     let color = 'success';
                                     if (!area.valid) {
                                       color = 'danger';
                                     } 
-                                    return <button key={area.id} class={`pl-5 list-group-item list-group-item-action list-group-item-${color}`} onClick={() => handleAreaToggle(state, areaIndex)}>{area.city}</button>
+                                    return <button key={area.id} className={`pl-5 list-group-item list-group-item-action list-group-item-${color}`} onClick={() => handleAreaToggle(state, areaIndex)}>{area.city}</button>
                                   })}
                               </div>
                             </div>
@@ -168,9 +168,9 @@ const AdminAreas = function (errorType = null) {
                       </div>
                     );
                   }) : 
-                  <div class="admin-page-list-item d-flex flex-row">
-                      <div class="admin-page-list-item-info d-flex flex-row">
-                          <div class="d-flex flex-column admin-page-list-item-description">
+                  <div className="admin-page-list-item d-flex flex-row">
+                      <div className="admin-page-list-item-info d-flex flex-row">
+                          <div className="d-flex flex-column admin-page-list-item-description">
                               <h3>No hay areas</h3>
                           </div>
                       </div>
@@ -180,31 +180,31 @@ const AdminAreas = function (errorType = null) {
             </div>
 
 
-            <div class="admin-page-list secondary">
-              <h2 class="text-center pt-3 pb-3">Comunas Con Despacho Disponible</h2>
-              <div id="accordion-2" class='h-100'>
+            <div className="admin-page-list secondary">
+              <h2 className="text-center pt-3 pb-3">Comunas Con Despacho Disponible</h2>
+              <div id="accordion-2" className='h-100'>
                 {Object.keys(validAreas).length > 0 ? 
                   Object.entries(validAreas).map(([state, values], index) => {
                     const header = `head-${index}-2`;
                     const body = `body-${index}-2`;
                     return (
-                      <div key={state} class="card">
-                          <div class="card-header" id={header}>
-                            <button  class="btn collapsed btn-block text-left"  data-toggle="collapse" data-target={`#${body}`} aria-expanded="false" aria-controls={`${body}`}>
-                              <h5 class="mb-0">
+                      <div key={state} className="card">
+                          <div className="card-header" id={header}>
+                            <button  className="btn collapsed btn-block text-left"  data-toggle="collapse" data-target={`#${body}`} aria-expanded="false" aria-controls={`${body}`}>
+                              <h5 className="mb-0">
                                   {state}
                               </h5>
                             </button>
                           </div>
                           <div id={body} className='collapse' aria-labelledby={'head'+state} data-parent="#accordion-2">
-                            <div class="card-body">
-                              <div class='list-group'>
+                            <div className="card-body">
+                              <div className='list-group'>
                                   {values.map((area, areaIndex) => {
                                     if (area.valid) {
                                       return (
-                                        <div key={area.id} class={`pl-5 list-group-item list-group-item-action d-flex justify-content-between`} >
+                                        <div key={area.id} className={`pl-5 list-group-item list-group-item-action d-flex justify-content-between`} >
                                           <h5>{area.city}</h5>
-                                          <button  type="button" class="close" aria-label="Close" onClick={() => handleAreaToggle(state, null, area.id)}>
+                                          <button  type="button" className="close" aria-label="Close" onClick={() => handleAreaToggle(state, null, area.id)}>
                                             <span aria-hidden="true">&times;</span>
                                           </button>
                                         </div>
@@ -219,8 +219,8 @@ const AdminAreas = function (errorType = null) {
                       </div>
                     );
                   }) : 
-                  <div class="card">
-                      <div class="card-header text-center">
+                  <div className="card">
+                      <div className="card-header text-center">
                           <h3>No hay comunas con despacho</h3>
                       </div>
                   </div>

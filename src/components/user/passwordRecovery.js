@@ -52,13 +52,13 @@ const UserPasswordRecovery = function (errorType = null) {
           })
           .catch( (error) => {
             setPage(
-                <div class="container login-page">
-                    <div class="d-flex justify-content-center h-100">
-                        <div class="card">
-                            <div class="card-header">
+                <div className="container login-page">
+                    <div className="d-flex justify-content-center h-100">
+                        <div className="card">
+                            <div className="card-header">
                                 <h3>Error al verificar el usuario</h3>
                             </div>
-                            <div class="card-body">
+                            <div className="card-body">
                                 <p>{error.message}</p>
                             </div>
                         </div>

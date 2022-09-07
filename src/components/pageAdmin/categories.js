@@ -105,9 +105,9 @@ const AdminProducts = function (errorType = null) {
 
     return (
         <> 
-            <div class="admin-page-body d-flex">
+            <div className="admin-page-body d-flex">
                 <CategoryList categories={categories}/>
-                <div class="admin-page-new-element-form">
+                <div className="admin-page-new-element-form">
                     <h2>Agregar Categoría</h2>
                     <Formik
                         initialValues={initialValues}
@@ -122,23 +122,23 @@ const AdminProducts = function (errorType = null) {
                             setFieldValue
                         }) => (
                             <Form>
-                                <div class="admin-page-new-element-form-inputs">
-                                    <div class="admin-page-new-element-form-inputs-group">
+                                <div className="admin-page-new-element-form-inputs">
+                                    <div className="admin-page-new-element-form-inputs-group">
                                         <label htmlFor="name">Nombre</label>
                                         <Field type="text" name="name" id="name" value={values.name} />
-                                        {errors.name && touched.name && <div class="admin-page-new-element-form-inputs-error">{errors.name}</div>}
+                                        {errors.name && touched.name && <div className="admin-page-new-element-form-inputs-error">{errors.name}</div>}
                                     </div>
-                                    <div class="admin-page-new-element-form-inputs-group admin-page-description-div">
-                                        <label htmlFor="description" class="admin-page-description-label">Descripción</label>
+                                    <div className="admin-page-new-element-form-inputs-group admin-page-description-div">
+                                        <label htmlFor="description" className="admin-page-description-label">Descripción</label>
                                         <Field as="textarea" name="description" id="description" value={values.description} />
-                                        {errors.description && touched.description && <div class="admin-page-new-element-form-inputs-error">{errors.description}</div>}
+                                        {errors.description && touched.description && <div className="admin-page-new-element-form-inputs-error">{errors.description}</div>}
                                     </div>
-                                    <div class="admin-page-new-element-form-inputs-group admin-page-multiselect">
-                                        <div class="admin-page-selectBox" onClick={showCheckboxes}>
-                                            <Field  as="select" class="form-control" >
-                                                <option value="" class="text-center">Seleccione los productos</option>
+                                    <div className="admin-page-new-element-form-inputs-group admin-page-multiselect">
+                                        <div className="admin-page-selectBox" onClick={showCheckboxes}>
+                                            <Field  as="select" className="form-control" >
+                                                <option value="" className="text-center">Seleccione los productos</option>
                                             </Field>
-                                            <div class="admin-page-overSelect"></div>
+                                            <div className="admin-page-overSelect"></div>
                                         </div>
                                         <div id="admin-page-checkboxes">
                                             {products.map((product) => (
@@ -152,8 +152,8 @@ const AdminProducts = function (errorType = null) {
                                 </div>
 
 
-                                <div class="admin-page-new-element-form-buttons">
-                                    <button type="submit" class="admin-page-new-element-form-btn">Agregar</button>
+                                <div className="admin-page-new-element-form-buttons">
+                                    <button type="submit" className="admin-page-new-element-form-btn">Agregar</button>
                                 </div>
                             </Form>
                         )}

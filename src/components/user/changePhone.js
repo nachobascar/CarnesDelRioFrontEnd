@@ -50,14 +50,14 @@ const UserChangePhone = function () {
     };
 
     return (
-        <div class="container login-page">
-            <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                    <div class="card-header">
+        <div className="container login-page">
+            <div className="d-flex justify-content-center h-100">
+                <div className="card">
+                    <div className="card-header">
                         <h3>Cambiar teléfono</h3>
                         {errors && <p>{errors.message}</p>}
                     </div>
-                    <div class="card-body margin-top">
+                    <div className="card-body margin-top">
                         <Formik
                             initialValues={initialValues}
                             onSubmit={handleSubmit}
@@ -68,14 +68,14 @@ const UserChangePhone = function () {
                                 {(errors.phone && touched.phone) && (
                                     <div className="bottom-margin">{errors.phone}</div>
                                 )}
-                                <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                <div className="input-group form-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="fas fa-phone"></i></span>
                                     </div>
-                                    <Field type="phone" class="form-control" placeholder="Teléfono" name="phone" id="phone" required/>
+                                    <Field type="phone" className="form-control" placeholder="Teléfono" name="phone" id="phone" required/>
                                 </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Confirmar" class="btn float-right login_btn"/>
+                                <div className="form-group">
+                                    <input type="submit" value="Confirmar" className="btn float-right login_btn"/>
                                 </div>
                             </Form>
                         )}

@@ -89,47 +89,47 @@ const UserPage = function (errorType = null) {
       }, []);
 
     return (
-        <div class="container user-show-container position-static login-page">
-            <div class="d-flex justify-content-center h-100 position-static">
-                <div class="card position-static">
-                    <div class="card-header ">
-                        <h3 class="user-profile-title">Usuario</h3>
+        <div className="container user-show-container position-static login-page">
+            <div className="d-flex justify-content-center h-100 position-static">
+                <div className="card position-static">
+                    <div className="card-header ">
+                        <h3 className="user-profile-title">Usuario</h3>
                     </div>
-                    <div class="card-body ">
-                        <div class="d-flex links">
+                    <div className="card-body ">
+                        <div className="d-flex links">
                             <p>Email: {user.email}</p>
                         </div>
-                        <div class="d-flex links justify-content-between ">
+                        <div className="d-flex links justify-content-between ">
                             <p>Teléfono: {user.phone}</p>
                             <a href="/changePhone">Modificar</a>
                         </div>
                         <br/>
-                        <div class="d-flex links justify-content-between align-items-center">
+                        <div className="d-flex links justify-content-between align-items-center">
                             <h3>Direcciones:</h3>
                             <a  href="/newAddress">Nueva Dirección</a>
                         </div>
                         {user.addresses && user.addresses.length ? 
-                            <ul class="list-group ">
+                            <ul className="list-group ">
                                 {user.addresses.map((address) => (
-                                    <li class="user-addresses list-group-item ">
-                                        <div class="d-flex links justify-content-between">
-                                            {address.nombre && <p class=".text-dark">{address.nombre}</p>}
+                                    <li key={address.id} className="user-addresses list-group-item ">
+                                        <div className="d-flex links justify-content-between">
+                                            {address.nombre && <p className=".text-dark">{address.nombre}</p>}
                                             <a href={`/newAddress?id=${address.id}`}>Editar</a>
                                         </div>
-                                        <div class="d-flex links justify-content-between">
-                                            <p class=".text-dark">{address.calleNum}</p>
+                                        <div className="d-flex links justify-content-between">
+                                            <p className=".text-dark">{address.calleNum}</p>
                                             <a href="#" onClick={() => handleRemoveAddress(address.id)} >Eliminar</a>
                                         </div>
                                     </li>
                                 ))}
                             </ul>
-                            : <p class="text-center w-100">No tiene direcciones</p>
+                            : <p className="text-center w-100">No tiene direcciones</p>
                         }
                         <br/>
-                        <a class="book-a-table-btn text-center d-block" href="/changePassword">Cambiar contraseña</a>
+                        <a className="book-a-table-btn text-center d-block" href="/changePassword">Cambiar contraseña</a>
                     </div>
-                    <div class="card-footer">
-                        <div class="d-flex justify-content-center links">
+                    <div className="card-footer">
+                        <div className="d-flex justify-content-center links">
                             ¿No está satisfecho?<a onClick={handleRemoveUser} href="#">Eliminar cuenta</a>
                         </div>
                     </div>

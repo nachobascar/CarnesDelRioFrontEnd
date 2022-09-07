@@ -52,31 +52,31 @@ const UserForgotPassword = function (errorType = null) {
 
 
     return (
-        <div class="container login-page">
-            <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                    <div class="card-header">
+        <div className="container login-page">
+            <div className="d-flex justify-content-center h-100">
+                <div className="card">
+                    <div className="card-header">
                         <h3>Recuperar contraseña</h3>
                         {registrationMessage && <p>{registrationMessage}</p>}
                         {errorMessage &&
                             <h4>{errorMessage}</h4>
                         }
                     </div>
-                    <div class="card-body margin-top">
+                    <div className="card-body margin-top">
                         <form onSubmit={handleSubmit}>
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <div className="input-group form-group">
+                                <div className="input-group-prepend">
+                                    <span className="input-group-text"><i className="fas fa-user"></i></span>
                                 </div>
-                                <input type="email" class="form-control" name="email" placeholder='correo electrónico' id="email" value={values.email} onChange={handleChange} required/>
+                                <input type="email" className="form-control" name="email" placeholder='correo electrónico' id="email" value={values.email} onChange={handleChange} required/>
                             </div>
-                            <div class="form-group">
-                                <input type="submit" value="Recuperar" class="btn float-right login_btn"/>
+                            <div className="form-group">
+                                <input type="submit" value="Recuperar" className="btn float-right login_btn"/>
                             </div>
                         </form>
                     </div>
-                    <div class="card-footer">
-                        <div class="d-flex justify-content-center links">
+                    <div className="card-footer">
+                        <div className="d-flex justify-content-center links">
                             ¿No tienes una cuenta?<a href="register">Registrarse</a>
                         </div>
                     </div>

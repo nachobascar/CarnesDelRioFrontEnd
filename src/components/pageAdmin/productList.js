@@ -26,34 +26,34 @@ const ProductList = function ({products}) {
     };
 
     return (
-        <div class="admin-page-list">
+        <div className="admin-page-list">
                     <ul>
                         {products.length ? 
                             products.map((product) => (
                                 <li key={product.id}>
-                                    <div class="admin-page-list-item d-flex flex-row">
-                                        <div class="admin-page-list-item-image d-flex align-self-center">
-                                            <img src={product.image} class="admin-page-img" />
+                                    <div className="admin-page-list-item d-flex flex-row">
+                                        <div className="admin-page-list-item-image d-flex align-self-center">
+                                            <img src={product.image} className="admin-page-img" />
                                         </div>
-                                        <div class="admin-page-list-item-info d-flex flex-row">
-                                            <div class="d-flex flex-column admin-page-list-item-description">
+                                        <div className="admin-page-list-item-info d-flex flex-row">
+                                            <div className="d-flex flex-column admin-page-list-item-description">
                                                 <h3>{product.name}</h3>
                                                 <p>{product.description}</p>
                                             </div>
-                                            <div class="d-flex flex-md-column align-self-center">
-                                                <p class="admin-page-item-price">${product.price.toLocaleString()}</p>
+                                            <div className="d-flex flex-md-column align-self-center">
+                                                <p className="admin-page-item-price">${product.price.toLocaleString()}</p>
                                             </div>
                                         </div>
-                                        <div class="admin-page-list-item-actions d-flex flex-column ml-auto align-self-center">
-                                            <a href={`/admin/products/${product.id}`} class="admin-page-list-item-btn book-a-table-btn">Editar</a>
-                                            <a href={`#`} onClick={() => {handleRemove(product.id)}} class="admin-page-list-item-btn book-a-table-btn">Eliminar</a>
+                                        <div className="admin-page-list-item-actions d-flex flex-column ml-auto align-self-center">
+                                            <a href={`/admin/products/${product.id}`} className="admin-page-list-item-btn book-a-table-btn">Editar</a>
+                                            <a href={`#`} onClick={() => {handleRemove(product.id)}} className="admin-page-list-item-btn book-a-table-btn">Eliminar</a>
                                         </div>
                                     </div>
                                 </li>
                             )) : 
-                            <div class="admin-page-list-item d-flex flex-row">
-                                <div class="admin-page-list-item-info d-flex flex-row">
-                                    <div class="d-flex flex-column admin-page-list-item-description">
+                            <div className="admin-page-list-item d-flex flex-row">
+                                <div className="admin-page-list-item-info d-flex flex-row">
+                                    <div className="d-flex flex-column admin-page-list-item-description">
                                         <h3>No hay productos</h3>
                                     </div>
                                 </div>
