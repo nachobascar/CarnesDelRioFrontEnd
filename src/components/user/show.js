@@ -64,9 +64,9 @@ const UserPage = function (errorType = null) {
       }, []);
 
     return (
-        <div class="container">
-            <div class="d-flex justify-content-center h-100">
-                <div class="card">
+        <div class="container user-show-container position-static">
+            <div class="d-flex justify-content-center h-100 position-static">
+                <div class="card position-static">
                     <div class="card-header ">
                         <h3 class="user-profile-title">Usuario</h3>
                     </div>
@@ -74,12 +74,31 @@ const UserPage = function (errorType = null) {
                         <div class="d-flex links">
                             <p>Email: {user.email}</p>
                         </div>
-                        <div class="d-flex links">
+                        <div class="d-flex links justify-content-between ">
                             <p>Teléfono: {user.phone}</p>
                             <a href="/changePhone">Modificar</a>
                         </div>
                         <br/>
-                        <a class="book-a-table-btn" href="/changePassword">Cambiar contraseña</a>
+                        <div class="d-flex links justify-content-between align-items-center">
+                            <h3>Direcciones:</h3>
+                            <a  href="/newAddress">Nueva Dirección</a>
+                        </div>
+                        {user.addresses && user.addresses.length ? 
+                            <ul class="list-group ">
+                                {user.addresses.map((address) => (
+                                    <li class="user-addresses list-group-item ">
+                                        {address.nombre && <p>{address.nombre}</p>}
+                                        <div class="d-flex links justify-content-between">
+                                            <p class=".text-dark">{address.calleNum}</p>
+                                            <a href="/changeAddress">Eliminar</a>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                            : <p class="text-center w-100">No tiene direcciones</p>
+                        }
+                        <br/>
+                        <a class="book-a-table-btn text-center d-block" href="/changePassword">Cambiar contraseña</a>
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-center links">

@@ -13,6 +13,7 @@ const iValues = {
     price: '',
     image: '',
     imageUrl: '',
+    stock: 0,
     categories: [],
 };
 
@@ -26,6 +27,9 @@ const validationSchema = Yup.object().shape({
         .required('El precio es requerido'),
     imageUrl: Yup.mixed()
         .required('La foto es requerida'),
+    stock: Yup.number()
+        .min(0, 'El stock debe ser mayor o igual a 0')
+        .required('El stock es requerido'),
   });
 
 
@@ -63,7 +67,8 @@ const AdminEditProducts = function (errorType = null) {
                     throw response;
                 }
                 response.json().then((products) => {
-                    setProducts(products);
+                    console.log(products); 
+                    setProducts(products.sort((a, b) => Date.parse( a.createdAt) - Date.parse(b.createdAt)));
                 });
             })
             .catch((error) => {
@@ -97,6 +102,7 @@ const AdminEditProducts = function (errorType = null) {
                         price: products.price,
                         image: products.image,
                         imageUrl: products.image,
+                        stock: products.stock,
                         categories: products.Categories.map((category) => category.id.toString())
                     }
                     setInitialValues(values);
@@ -195,10 +201,15 @@ const AdminEditProducts = function (errorType = null) {
                                         <Field as="textarea" name="description" id="description" value={values.description} />
                                         {errors.description && touched.description && <div class="admin-page-new-element-form-inputs-error">{errors.description}</div>}
                                     </div>
-                                    <div class="admin-page-new-element-form-inputs-group">
+                                    <div class="admin-page-new-element-form-inputs-group  admin-page-num-input">
                                         <label htmlFor="price">Precio</label>
                                         <Field type="number" name="price" id="price" value={values.price} />
-                                        {errors.price && touched.price && <div class="admin-page-new-element-form-inputs-error">{errors.description}</div>}
+                                        {errors.price && touched.price && <div class="admin-page-new-element-form-inputs-error">{errors.price}</div>}
+                                    </div>
+                                    <div class="admin-page-new-element-form-inputs-group  admin-page-num-input">
+                                        <label htmlFor="stock">Cantidad</label>
+                                        <Field type="number" name="stock" id="stock" value={values.stock} />
+                                        {errors.stock && touched.stock && <div class="admin-page-new-element-form-inputs-error">{errors.stock}</div>}
                                     </div>
                                     <div class="admin-page-new-element-form-inputs-group admin-page-multiselect">
                                         <div class="admin-page-selectBox" onClick={showCheckboxes}>

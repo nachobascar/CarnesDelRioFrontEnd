@@ -3,7 +3,6 @@ import useAuth from '../../hooks/useAuth';
 
 
 const Cart = function({cart, setCart}) {
-    
     const {currentUser} = useAuth();
 
     const handleDeleteItem = async function(id) {
@@ -14,7 +13,7 @@ const Cart = function({cart, setCart}) {
                 'Authorization': currentUser.token_type + ' ' + currentUser.access_token
             },
         };
-        fetch(`${process.env.REACT_APP_API_URL}/orders/${id}`, requestOptions)
+        fetch(`${process.env.REACT_APP_API_URL}/cart/${id}`, requestOptions)
             .then((response) => {
                 if (!response.ok) {
                     console.log("Error al verificar el usuario");
@@ -43,11 +42,25 @@ const Cart = function({cart, setCart}) {
             }),
         };
         try {   
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/orders/${product.id}`, requestOptions);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/cart/${product.id}`, requestOptions);
             if (!response.ok) {
+                // Timer para que se vea el error
+                
+                if (!document.getElementById('cart-stock-error').classList.contains('fadeIn')) {
+                    document.getElementById('cart-stock-error').classList.toggle('fadeIn');
+                } else {
+                    document.getElementById('cart-stock-error').classList.toggle('fadeIn');
+                    document.getElementById('cart-stock-error').classList.toggle('fadeIn');
+                }
+                setTimeout(() => {
+                    if (document.getElementById('cart-stock-error').classList.contains('fadeIn')) {
+                        document.getElementById('cart-stock-error').classList.toggle('fadeIn');
+                    }
+                }, 2000);
+
                 const error = await response.json();
                 throw error;
-            }
+            } 
             setCart(await response.json());
         } catch (error) {
             console.log(error);
@@ -63,7 +76,7 @@ const Cart = function({cart, setCart}) {
                     'Authorization': currentUser.token_type + ' ' + currentUser.access_token
                 },
             };
-            fetch(`${process.env.REACT_APP_API_URL}/orders`, requestOptions)
+            fetch(`${process.env.REACT_APP_API_URL}/cart`, requestOptions)
             .then((response) => {
                 if (!response.ok) {
                     console.log("Error al verificar el usuario");
@@ -85,6 +98,7 @@ const Cart = function({cart, setCart}) {
             {currentUser && 
                 <>
                 <h2 class="cd-cart-h2">Carro</h2>
+                <p id="cart-stock-error" class="cd-cart-error text-danger opacity-0">Máximo stock alcanzado</p>
                 <ul class="cd-cart-items">
                     {cart.sort((a, b) => Date.parse( a.createdAt) - Date.parse(b.createdAt)).map((item) => (
                         <div key={item.id} class="row border-top border-bottom padding-top padding-bottom cart-item">

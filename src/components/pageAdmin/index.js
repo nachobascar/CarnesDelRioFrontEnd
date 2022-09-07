@@ -29,6 +29,10 @@ const AdminPage = function (errorType = null) {
                             <li>
                                 <a href="/admin/promotions" class="admin-page-submenu">Promociones</a>
                             </li>
+
+                            <li>
+                                <a href="/admin/removedProducts" class="admin-page-submenu">Productos Eliminados</a>
+                            </li>
                         </ul>
                     </li>
                     <li>

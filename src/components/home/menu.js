@@ -35,12 +35,22 @@ const Menu = function({setCart}) {
   const [productQuantity, setProductQuantity] = useState(1);
   const [itemHtml, setItemHtml] = useState(<></>);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [maxStock, setMaxStock] = useState(false);
 
   const {currentUser} = useAuth();
 
-  const handleQuantity = function(num) {
-    setProductQuantity(prevCount => Math.max(1, prevCount + num));
+  const handleQuantity = function(num, product) {
+    if (productQuantity + num > product.stock) {
+      setMaxStock(true);
+      if (productQuantity > product.stock) {
+        setProductQuantity(product.stock);
+      }
+    } else {
+      setProductQuantity(prevCount => Math.max(1, prevCount + num));
+      setMaxStock(false);
+    }
   }
+
 
   const handleAddItem = async function(item) {
     const requestOptions = {
@@ -55,7 +65,7 @@ const Menu = function({setCart}) {
         }),
     };
     try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/orders`, requestOptions);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/cart`, requestOptions);
         if (!response.ok) {
             const error = await response.json();
             throw error;
@@ -80,12 +90,14 @@ const Menu = function({setCart}) {
                       <h5 class="card-title font-weight-bold">{product.name}</h5>
                       <p class="card-text">{product.description}</p>
                       <p class="card-text">${product.price.toLocaleString()}</p> 
-                      {currentUser && 
+                      {(currentUser && product.stock > 0) && 
                       <>
-                        <div class="col"> <a class="cart-signs" onClick={() => handleQuantity(-1)}>-</a>&emsp; {productQuantity} &emsp;<a class="cart-signs" onClick={() => handleQuantity(1)}>+</a> </div>
+                        <div class="col"> <a class="cart-signs" onClick={() => handleQuantity(-1, product)}>-</a>&emsp; {productQuantity} &emsp;<a class="cart-signs" onClick={() => handleQuantity(1, product)}>+</a> </div>
+                        {maxStock && <p class="card-text text-danger">Máximo stock alcanzado</p>}
                         <br/>
                         <a onClick={() => handleAddItem(product)} class="book-a-table-btn px-auto">AÑADIR</a>
                       </>}
+                      {!product.stock && <p class="card-text">Sin stock</p>}
                   </div>
               </div>
           </div>
@@ -102,6 +114,7 @@ const Menu = function({setCart}) {
       setSelectedItem(null);
       setItemHtml(<></>);
       setProductQuantity(1);
+      setMaxStock(false);
     }
   
   }
@@ -110,7 +123,7 @@ const Menu = function({setCart}) {
     if (selectedItem) {
       handleClick(selectedItem, true);
     }
-  }, [productQuantity]);
+  }, [productQuantity, maxStock]);
 
   useEffect(() => {
     if (select('.menu-page-open-item')) {

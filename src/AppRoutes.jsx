@@ -33,6 +33,7 @@ import UserPasswordRecovery from './components/user/passwordRecovery';
 import UserConfirmNewPassword from './components/user/confirmNewPassword';
 import UserChangePassword from './components/user/changePassword';
 import UserChangePhone from './components/user/changePhone';
+import CreateAddress from './components/user/newAddress';
 
 // Admin page
 import AdminPage from "./components/pageAdmin/index";
@@ -40,6 +41,7 @@ import AdminProducts from "./components/pageAdmin/products";
 import AdminEditProducts from "./components/pageAdmin/editProducts";
 import AdminCategories from "./components/pageAdmin/categories";
 import AdminEditCategories from "./components/pageAdmin/editCategories";
+import AdminRemovedProducts from "./components/pageAdmin/removedProducts";
 
 export default function AppRoutes() {
   const [cart, setCart] = useState([]);
@@ -75,10 +77,13 @@ export default function AppRoutes() {
                     <Route index element={<></>} />
                     <Route path="products" element={<AdminProducts/>}/>
                     <Route path="products/:id" element={<AdminEditProducts/>} />
+                    <Route path="removedProducts" element={<AdminRemovedProducts/>} />
                     <Route path="categories" element={<AdminCategories/>}/>
                     <Route path="categories/:id" element={<AdminEditCategories/>} />
                     <Route path="*" element={<div>Not Found</div>} />
                 </Route>
+                <Route path="newAddress" element={<CreateAddress/>} />
+
                 <Route path="*" element={<div>Not Found</div>} />
             
             </Routes>

@@ -8,6 +8,16 @@
   color: #CDA45E;
 }
 
+@keyframes fadeIn {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 2s;
+}
+
 .cart-item-image {
   border-radius: 50%;
 }
