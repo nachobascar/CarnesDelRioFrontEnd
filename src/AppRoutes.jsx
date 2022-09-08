@@ -43,6 +43,7 @@ import AdminCategories from "./components/pageAdmin/categories";
 import AdminEditCategories from "./components/pageAdmin/editCategories";
 import AdminRemovedProducts from "./components/pageAdmin/removedProducts";
 import AdminAreas from './components/pageAdmin/areas';
+import AdminUsers from './components/pageAdmin/users';
 
 export default function AppRoutes() {
   const [cart, setCart] = useState([]);
@@ -91,6 +92,7 @@ export default function AppRoutes() {
                     <Route path="categories" element={<AdminCategories isLoading={isLoading}/>}/>
                     <Route path="categories/:id" element={<AdminEditCategories isLoading={isLoading}/>} />
                     <Route path="areas" element={<AdminAreas isLoading={isLoading}/>}/>
+                    <Route path="users" element={<AdminUsers isLoading={isLoading}/>}/>
                     <Route path="*" element={<div>Not Found</div>} />
                 </Route>
                 <Route path="newAddress" element={<CreateAddress isLoading={isLoading}/>} />

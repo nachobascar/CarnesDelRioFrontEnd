@@ -135,7 +135,7 @@ const AdminAreas = function ({isLoading}) {
                               </h5>
                             </button>
                           </div>
-                          <div id={body} className='collapse' aria-labelledby={'head'+state} data-parent="#accordion">
+                          <div id={body} className='collapse' aria-labelledby={header} data-parent="#accordion">
                             <div className="card-body">
                               <div className='list-group'>
                                   {values.map((area, areaIndex) => {

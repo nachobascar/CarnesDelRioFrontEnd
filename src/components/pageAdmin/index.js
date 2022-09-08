@@ -39,24 +39,7 @@ const AdminPage = function (errorType = null) {
                         <a href="/admin/areas">Regiones y Comunas</a>
                     </li>
                     <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle">Pages</a>
-                        <ul className="collapse list-unstyled" id="pageSubmenu" wfd-invisible="true">
-                            <li>
-                                <a href="#">Page 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Portfolio</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
+                        <a href="/admin/users">Usuarios</a>
                     </li>
                 </ul>
 
